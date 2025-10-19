@@ -1,11 +1,10 @@
 import io.joern.jssrc2cpg.{Config, JsSrc2Cpg}
 import io.shiftleft.codepropertygraph.Cpg
 
-class CodeSliceImp extends CodeSlice {
+class CodeSliceImp(inputDir : String, codeSliceFilePath : String) extends CodeSlice {
   val config : Config = Config()
     .withTsTypes(true)
-    .withInputPath("")
-    .withOutputPath("")
+    .withInputPath(inputDir)
   val cpg: Cpg  = JsSrc2Cpg().createCpg(config).get
   // TODO: thang
   override def getSinkMethodGroup(sinkGroup: SinkGroup): SinkMethodGroup = ???
