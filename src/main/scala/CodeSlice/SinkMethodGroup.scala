@@ -1,1 +1,3 @@
+package CodeSlice
+
 class SinkMethodGroup

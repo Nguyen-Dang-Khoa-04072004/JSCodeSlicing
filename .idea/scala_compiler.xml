@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ScalaCompilerConfiguration">
-    <option name="separateProdTestSources" value="true" />
-    <profile name="sbt 1" modules="codeslice,codeslice.main,codeslice.test" />
+    <profile name="sbt 1" modules="jscodeslicing,jscodeslicing_9361" />
   </component>
 </project>

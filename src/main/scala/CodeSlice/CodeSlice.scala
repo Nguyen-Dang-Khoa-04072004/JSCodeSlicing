@@ -1,3 +1,5 @@
+package CodeSlice
+
 trait CodeSlice {
     /**
      * get a source method group from the source group
@@ -5,7 +7,7 @@ trait CodeSlice {
      * @param sourceGroup group of all sources
      * @return source method group
      */
-    def getSourceMethodGroup(sourceGroup : SourceGroup) : SourceMethodGroup
+    def getSourceMethodGroup: SourceMethodGroup
 
     /**
      * get a sink method group from the sink  group
@@ -13,7 +15,7 @@ trait CodeSlice {
      * @param sinkGroup
      * @return
      */
-    def getSinkMethodGroup(sinkGroup : SinkGroup) : SinkMethodGroup
+    def getSinkMethodGroup: SinkMethodGroup
 
     /**
      * get a taint base analysis path line
@@ -28,7 +30,9 @@ trait CodeSlice {
      * extract code from line numbers and save to output directory
      *
      * @param pathLine the taint analysis path line
+     *                 
+     * @return extracted code as a string
      */
-    def extractCode(pathLine: PathLine) : Unit
+    def extractCode(pathLine: PathLine) : String
 }
 
