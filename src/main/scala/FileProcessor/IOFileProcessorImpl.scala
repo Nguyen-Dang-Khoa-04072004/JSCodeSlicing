@@ -1,5 +1,5 @@
 package FileProcessor
-import java.io.{File, FileWriter , BufferedWriter}
+import java.io.{File, FileWriter, BufferedWriter}
 import scala.io.Source
 
 object IOFileProcessorImpl extends IOFileProcessor {
@@ -8,7 +8,9 @@ object IOFileProcessorImpl extends IOFileProcessor {
     val directory = new File(directoryPath)
 
     if (!directory.exists() || !directory.isDirectory) {
-      println(s"Warning: Directory does not exist or is not a directory: $directoryPath")
+      println(
+        s"Warning: Directory does not exist or is not a directory: $directoryPath"
+      )
       return Seq.empty
     }
 
@@ -43,7 +45,10 @@ object IOFileProcessorImpl extends IOFileProcessor {
     }
   }
 
-  override def saveCheckpoint(checkpointFilePath: String, packageName: String): Boolean = {
+  override def saveCheckpoint(
+      checkpointFilePath: String,
+      packageName: String
+  ): Boolean = {
     try {
       val checkpointFile = new File(checkpointFilePath)
       checkpointFile.getParentFile.mkdirs()
@@ -61,11 +66,17 @@ object IOFileProcessorImpl extends IOFileProcessor {
     }
   }
 
-  override def isPackageProcessed(packageName: String, processedPackages: Set[String]): Boolean = {
+  override def isPackageProcessed(
+      packageName: String,
+      processedPackages: Set[String]
+  ): Boolean = {
     processedPackages.contains(packageName)
   }
 
-  override def saveOutputPackage(outputFilePath: String, content: String): Boolean = {
+  override def saveOutputPackage(
+      outputFilePath: String,
+      content: String
+  ): Boolean = {
     try {
       val outputFile = new File(outputFilePath)
       outputFile.getParentFile.mkdirs()
@@ -84,5 +95,19 @@ object IOFileProcessorImpl extends IOFileProcessor {
 
   override def getPackageName(packageDir: String): String = {
     new File(packageDir).getName
+  }
+
+  override def createOutputDirectoryIfNotExists(outputDir: String): String = {
+    try {
+      val dir = new File(outputDir)
+      if (!dir.exists()) {
+        dir.mkdirs()
+      }
+      dir.getAbsolutePath()
+    } catch {
+      case e: Exception =>
+        println(s"Error creating output directory: ${e.getMessage}")
+        ""
+    }
   }
 }

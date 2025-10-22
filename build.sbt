@@ -5,7 +5,9 @@ ThisBuild / scalaVersion := "3.6.4"
 libraryDependencies ++= Seq(
   "io.joern" %% "joern-cli" % "4.0.436",
   "io.joern" %% "jssrc2cpg" % "4.0.436",
+  "io.joern" %% "x2cpg" % "4.0.436",
   "com.google.guava" % "guava" % "33.0.0-jre",
-  "org.scalatest" %% "scalatest" % "3.2.19" % Test,
-  "org.json4s" %% "json4s-jackson" % "4.0.7"
+  "org.slf4j" % "slf4j-simple" % "2.0.16"
 )
+
+resolvers += "Joern" at "https://repo.joern.io"
