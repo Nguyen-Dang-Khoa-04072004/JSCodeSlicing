@@ -11,6 +11,10 @@ target/
 *.iws
 *.iml
 *.ipr
+*.metals
+*.idea
+*.bloop
+project/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
