@@ -5,6 +5,8 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
+    print("\u001b[H\u001b[2J")
+
     val ioFileProcessor: IOFileProcessor = IOFileProcessorImpl
 
     for (
