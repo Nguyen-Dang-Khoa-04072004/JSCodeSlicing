@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91d6badf-143b-43ec-a0c2-58fca038a443" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/CodeSlice/CodeSliceImp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/CodeSlice/CodeSliceImp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/JoernWrapper/JoernService.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/JoernWrapper/JoernWrapper.scala" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Main.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +120,7 @@
       <updated>1761025701594</updated>
       <workItem from="1761025703066" duration="8340000" />
       <workItem from="1761080427294" duration="4875000" />
-      <workItem from="1761098892405" duration="336000" />
+      <workItem from="1761098892405" duration="1197000" />
     </task>
     <servers />
   </component>

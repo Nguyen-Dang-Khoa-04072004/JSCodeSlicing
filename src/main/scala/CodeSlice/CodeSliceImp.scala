@@ -1,6 +1,8 @@
 package CodeSlice
 
 import io.joern.jssrc2cpg.{Config, JsSrc2Cpg}
+import io.joern.x2cpg.X2Cpg
+import io.shiftleft.codepropertygraph.generated.Cpg
 import scala.util.{Success, Failure}
 import Type.Source.SourceGroups
 import Type.Sink.SinkGroups
@@ -10,6 +12,23 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
   println(inputDir)
   println(outputDir)
+
+  private val cpg: Cpg = {
+    println("ASTGEN_BIN = " + sys.env.get("ASTGEN_BIN"))
+    val config = Config()
+      .withInputPath(inputDir)
+      .withOutputPath(s"$outputDir/cpg.bin")
+
+    val jsSrc2Cpg = new JsSrc2Cpg()
+    jsSrc2Cpg.createCpg(config) match {
+      case Success(cpg) => cpg
+      case Failure(exception) =>
+        throw new RuntimeException(
+          s"Failed to create CPG from source code at $inputDir",
+          exception
+        )
+    }
+  }
 
   // TODO: thang
   override def getSinkMethodGroup: SinkMethodGroup = {
