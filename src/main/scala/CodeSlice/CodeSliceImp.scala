@@ -3,10 +3,14 @@ package CodeSlice
 import io.joern.jssrc2cpg.{Config, JsSrc2Cpg}
 import io.joern.x2cpg.X2Cpg
 import io.shiftleft.codepropertygraph.generated.Cpg
-import scala.util.{Success, Failure}
+
+import scala.util.{Failure, Success}
 import Type.Source.SourceGroups
 import Type.Sink.SinkGroups
 import Type.{CallType, CodeType, RegexType}
+import io.joern.joerncli.{JoernParse, JoernSlice}
+
+import java.nio.file.Paths
 
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
@@ -82,4 +86,13 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
   ): PathLine = ???
   // TODO: thang
   override def extractCode(pathLine: PathLine): String = ???
+
+  def saveCpgToJsonFile(): Unit = {
+      JsSrc2Cpg().run(Config()
+      .withInputPath(inputDir)
+      .withOutputPath(outputDir + "/cpg.bin"))
+//      val args = Array("data-flow",outputDir + "/cpg.bin", "-o", outputDir + "/slices.json")
+//      args.foreach(arg => println(arg))
+//      JoernSlice.main(args)
+  }
 }

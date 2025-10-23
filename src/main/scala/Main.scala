@@ -1,5 +1,5 @@
 import CodeSlice.{CodeSlice, CodeSliceImp}
-import FileProcessor.{IOFileProcessorImpl, IOFileProcessor}
+import FileProcessor.*
 
 object Main {
 

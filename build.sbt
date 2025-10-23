@@ -7,7 +7,8 @@ libraryDependencies ++= Seq(
   "io.joern" %% "jssrc2cpg" % "4.0.436",
   "io.joern" %% "x2cpg" % "4.0.436",
   "com.google.guava" % "guava" % "33.0.0-jre",
-  "org.slf4j" % "slf4j-simple" % "2.0.16"
+  "org.slf4j" % "slf4j-simple" % "2.0.16",
+  "org.scalatest" %% "scalatest" % "3.2.19" % Test
 )
 
 resolvers += "Joern" at "https://repo.joern.io"
