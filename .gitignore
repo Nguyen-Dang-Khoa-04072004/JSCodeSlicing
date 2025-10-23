@@ -12,7 +12,8 @@ target/
 *.iml
 *.ipr
 *.metals
-*.idea
+*.idea/
+astgen/
 *.bloop
 project/
 out/
