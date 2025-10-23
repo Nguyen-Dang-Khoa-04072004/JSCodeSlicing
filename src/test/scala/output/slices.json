@@ -1,5 +1,1443 @@
 {
-  "$type": "ProgramUsageSlice",
-  "objectSlices": [],
-  "userDefinedTypes": []
+  "$type": "DataFlowSlice",
+  "edges": [
+    {
+      "dst": 68719476772,
+      "label": "REACHING_DEF",
+      "src": 68719476766
+    },
+    {
+      "dst": 25769803777,
+      "label": "REACHING_DEF",
+      "src": 30064771110
+    },
+    {
+      "dst": 30064771073,
+      "label": "REACHING_DEF",
+      "src": 68719476737
+    },
+    {
+      "dst": 68719476741,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476755,
+      "label": "REACHING_DEF",
+      "src": 90194313227
+    },
+    {
+      "dst": 68719476764,
+      "label": "REACHING_DEF",
+      "src": 90194313233
+    },
+    {
+      "dst": 68719476750,
+      "label": "REACHING_DEF",
+      "src": 68719476747
+    },
+    {
+      "dst": 68719476759,
+      "label": "REACHING_DEF",
+      "src": 68719476757
+    },
+    {
+      "dst": 30064771108,
+      "label": "REACHING_DEF",
+      "src": 90194313235
+    },
+    {
+      "dst": 68719476743,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 25769803779,
+      "label": "REACHING_DEF",
+      "src": 30064771080
+    },
+    {
+      "dst": 68719476747,
+      "label": "REACHING_DEF",
+      "src": 30064771086
+    },
+    {
+      "dst": 68719476751,
+      "label": "REACHING_DEF",
+      "src": 120259084288
+    },
+    {
+      "dst": 68719476738,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476774,
+      "label": "REACHING_DEF",
+      "src": 68719476773
+    },
+    {
+      "dst": 68719476758,
+      "label": "REACHING_DEF",
+      "src": 68719476757
+    },
+    {
+      "dst": 68719476746,
+      "label": "REACHING_DEF",
+      "src": 68719476744
+    },
+    {
+      "dst": 68719476761,
+      "label": "REACHING_DEF",
+      "src": 90194313231
+    },
+    {
+      "dst": 68719476739,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476749,
+      "label": "REACHING_DEF",
+      "src": 90194313224
+    },
+    {
+      "dst": 68719476760,
+      "label": "REACHING_DEF",
+      "src": 68719476759
+    },
+    {
+      "dst": 68719476738,
+      "label": "REACHING_DEF",
+      "src": 68719476753
+    },
+    {
+      "dst": 68719476770,
+      "label": "REACHING_DEF",
+      "src": 30064771108
+    },
+    {
+      "dst": 68719476762,
+      "label": "REACHING_DEF",
+      "src": 30064771101
+    },
+    {
+      "dst": 30064771080,
+      "label": "REACHING_DEF",
+      "src": 90194313220
+    },
+    {
+      "dst": 68719476740,
+      "label": "REACHING_DEF",
+      "src": 68719476737
+    },
+    {
+      "dst": 68719476738,
+      "label": "REACHING_DEF",
+      "src": 68719476746
+    },
+    {
+      "dst": 30064771075,
+      "label": "REACHING_DEF",
+      "src": 90194313216
+    },
+    {
+      "dst": 68719476748,
+      "label": "REACHING_DEF",
+      "src": 68719476762
+    },
+    {
+      "dst": 68719476753,
+      "label": "REACHING_DEF",
+      "src": 68719476746
+    },
+    {
+      "dst": 68719476736,
+      "label": "REACHING_DEF",
+      "src": 111669149697
+    },
+    {
+      "dst": 68719476739,
+      "label": "REACHING_DEF",
+      "src": 25769803779
+    },
+    {
+      "dst": 68719476737,
+      "label": "REACHING_DEF",
+      "src": 30064771075
+    },
+    {
+      "dst": 68719476739,
+      "label": "REACHING_DEF",
+      "src": 90194313219
+    },
+    {
+      "dst": 30064771086,
+      "label": "REACHING_DEF",
+      "src": 68719476749
+    },
+    {
+      "dst": 30064771086,
+      "label": "REACHING_DEF",
+      "src": 90194313224
+    },
+    {
+      "dst": 68719476756,
+      "label": "REACHING_DEF",
+      "src": 111669149701
+    },
+    {
+      "dst": 68719476773,
+      "label": "REACHING_DEF",
+      "src": 120259084289
+    },
+    {
+      "dst": 68719476769,
+      "label": "REACHING_DEF",
+      "src": 30064771106
+    },
+    {
+      "dst": 68719476761,
+      "label": "REACHING_DEF",
+      "src": 90194313232
+    },
+    {
+      "dst": 68719476775,
+      "label": "REACHING_DEF",
+      "src": 68719476773
+    },
+    {
+      "dst": 68719476751,
+      "label": "REACHING_DEF",
+      "src": 68719476747
+    },
+    {
+      "dst": 30064771106,
+      "label": "REACHING_DEF",
+      "src": 90194313234
+    },
+    {
+      "dst": 68719476755,
+      "label": "REACHING_DEF",
+      "src": 68719476753
+    },
+    {
+      "dst": 68719476770,
+      "label": "REACHING_DEF",
+      "src": 30064771110
+    },
+    {
+      "dst": 68719476769,
+      "label": "REACHING_DEF",
+      "src": 30064771108
+    },
+    {
+      "dst": 30064771075,
+      "label": "REACHING_DEF",
+      "src": 68719476737
+    },
+    {
+      "dst": 25769803777,
+      "label": "REACHING_DEF",
+      "src": 30064771108
+    },
+    {
+      "dst": 68719476757,
+      "label": "REACHING_DEF",
+      "src": 90194313229
+    },
+    {
+      "dst": 68719476745,
+      "label": "REACHING_DEF",
+      "src": 68719476744
+    },
+    {
+      "dst": 68719476773,
+      "label": "REACHING_DEF",
+      "src": 68719476766
+    },
+    {
+      "dst": 25769803777,
+      "label": "REACHING_DEF",
+      "src": 30064771106
+    },
+    {
+      "dst": 68719476753,
+      "label": "REACHING_DEF",
+      "src": 90194313226
+    },
+    {
+      "dst": 30064771073,
+      "label": "REACHING_DEF",
+      "src": 30064771075
+    },
+    {
+      "dst": 25769803777,
+      "label": "REACHING_DEF",
+      "src": 30064771112
+    },
+    {
+      "dst": 30064771101,
+      "label": "REACHING_DEF",
+      "src": 90194313233
+    },
+    {
+      "dst": 68719476737,
+      "label": "REACHING_DEF",
+      "src": 111669149697
+    },
+    {
+      "dst": 68719476736,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476770,
+      "label": "REACHING_DEF",
+      "src": 30064771106
+    },
+    {
+      "dst": 68719476757,
+      "label": "REACHING_DEF",
+      "src": 111669149701
+    },
+    {
+      "dst": 68719476752,
+      "label": "REACHING_DEF",
+      "src": 68719476746
+    },
+    {
+      "dst": 30064771073,
+      "label": "REACHING_DEF",
+      "src": 90194313217
+    },
+    {
+      "dst": 68719476766,
+      "label": "REACHING_DEF",
+      "src": 25769803777
+    },
+    {
+      "dst": 68719476737,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476761,
+      "label": "REACHING_DEF",
+      "src": 68719476759
+    },
+    {
+      "dst": 30064771110,
+      "label": "REACHING_DEF",
+      "src": 90194313236
+    },
+    {
+      "dst": 30064771078,
+      "label": "REACHING_DEF",
+      "src": 25769803779
+    },
+    {
+      "dst": 68719476744,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476738,
+      "label": "REACHING_DEF",
+      "src": 68719476755
+    },
+    {
+      "dst": 68719476746,
+      "label": "REACHING_DEF",
+      "src": 90194313222
+    },
+    {
+      "dst": 30064771078,
+      "label": "REACHING_DEF",
+      "src": 68719476739
+    },
+    {
+      "dst": 30064771101,
+      "label": "REACHING_DEF",
+      "src": 68719476764
+    },
+    {
+      "dst": 68719476739,
+      "label": "REACHING_DEF",
+      "src": 30064771078
+    },
+    {
+      "dst": 68719476755,
+      "label": "REACHING_DEF",
+      "src": 90194313228
+    },
+    {
+      "dst": 68719476746,
+      "label": "REACHING_DEF",
+      "src": 90194313223
+    },
+    {
+      "dst": 30064771078,
+      "label": "REACHING_DEF",
+      "src": 90194313219
+    },
+    {
+      "dst": 68719476775,
+      "label": "REACHING_DEF",
+      "src": 120259084290
+    },
+    {
+      "dst": 68719476759,
+      "label": "REACHING_DEF",
+      "src": 90194313230
+    },
+    {
+      "dst": 68719476753,
+      "label": "REACHING_DEF",
+      "src": 90194313225
+    },
+    {
+      "dst": 68719476754,
+      "label": "REACHING_DEF",
+      "src": 68719476753
+    },
+    {
+      "dst": 68719476768,
+      "label": "REACHING_DEF",
+      "src": 30064771106
+    },
+    {
+      "dst": 68719476744,
+      "label": "REACHING_DEF",
+      "src": 90194313221
+    },
+    {
+      "dst": 68719476740,
+      "label": "REACHING_DEF",
+      "src": 111669149699
+    },
+    {
+      "dst": 68719476738,
+      "label": "REACHING_DEF",
+      "src": 68719476744
+    },
+    {
+      "dst": 30064771112,
+      "label": "REACHING_DEF",
+      "src": 90194313237
+    }
+  ],
+  "nodes": [
+    {
+      "code": "\"1.1.1\"",
+      "columnNumber": 11,
+      "id": 90194313236,
+      "label": "LITERAL",
+      "lineNumber": 6,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "_tmp_0",
+      "columnNumber": 2,
+      "id": 68719476767,
+      "label": "IDENTIFIER",
+      "lineNumber": 4,
+      "name": "_tmp_0",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_1.isAsset",
+      "columnNumber": 8,
+      "id": 30064771080,
+      "label": "CALL",
+      "lineNumber": 17,
+      "name": "<operator>.fieldAccess",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "fs",
+      "columnNumber": 4,
+      "id": 68719476762,
+      "label": "IDENTIFIER",
+      "lineNumber": 1,
+      "name": "fs",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"fs\"",
+      "columnNumber": 21,
+      "id": 90194313233,
+      "label": "LITERAL",
+      "lineNumber": 1,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "git",
+      "columnNumber": 2,
+      "id": 55834574865,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 7,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476773,
+      "label": "IDENTIFIER",
+      "lineNumber": 10,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_0.version",
+      "columnNumber": 2,
+      "id": 30064771110,
+      "label": "CALL",
+      "lineNumber": 6,
+      "name": "<operator>.fieldAccess",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_0.summary",
+      "columnNumber": 2,
+      "id": 30064771108,
+      "label": "CALL",
+      "lineNumber": 5,
+      "name": "<operator>.fieldAccess",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 6,
+      "id": 68719476738,
+      "label": "IDENTIFIER",
+      "lineNumber": 16,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "use",
+      "columnNumber": 6,
+      "id": 55834574858,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 27,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2"
+    },
+    {
+      "code": "-3",
+      "columnNumber": 20,
+      "id": 30064771075,
+      "label": "CALL",
+      "lineNumber": 15,
+      "name": "<operator>.minus",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "name",
+      "columnNumber": 2,
+      "id": 55834574862,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 4,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "file",
+      "columnNumber": 8,
+      "id": 68719476736,
+      "label": "IDENTIFIER",
+      "lineNumber": 15,
+      "name": "file",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "Npm",
+      "columnNumber": 9,
+      "id": 68719476764,
+      "label": "IDENTIFIER",
+      "lineNumber": 1,
+      "name": "Npm",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "fs.readdirSync(\"ace-builds/src-noconflict\")",
+      "columnNumber": 14,
+      "id": 30064771086,
+      "label": "CALL",
+      "lineNumber": 13,
+      "name": "readdirSync",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_1",
+      "columnNumber": 8,
+      "id": 68719476741,
+      "label": "IDENTIFIER",
+      "lineNumber": 17,
+      "name": "_tmp_1",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"client\"",
+      "columnNumber": 57,
+      "id": 90194313219,
+      "label": "LITERAL",
+      "lineNumber": 16,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "{//\n        isAsset: true,\n      }",
+      "columnNumber": 67,
+      "id": 25769803779,
+      "label": "BLOCK",
+      "lineNumber": 16,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476772,
+      "label": "IDENTIFIER",
+      "lineNumber": 10,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"client\"",
+      "columnNumber": 26,
+      "id": 90194313226,
+      "label": "LITERAL",
+      "lineNumber": 21,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "files",
+      "columnNumber": 6,
+      "id": 68719476747,
+      "label": "IDENTIFIER",
+      "lineNumber": 13,
+      "name": "files",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476760,
+      "label": "IDENTIFIER",
+      "lineNumber": 28,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"client\"",
+      "columnNumber": 26,
+      "id": 90194313228,
+      "label": "LITERAL",
+      "lineNumber": 22,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "files",
+      "columnNumber": 2,
+      "id": 68719476751,
+      "label": "IDENTIFIER",
+      "lineNumber": 14,
+      "name": "files",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476758,
+      "label": "IDENTIFIER",
+      "lineNumber": 27,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "summary",
+      "columnNumber": 2,
+      "id": 55834574863,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 5,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "_tmp_0",
+      "columnNumber": 2,
+      "id": 68719476770,
+      "label": "IDENTIFIER",
+      "lineNumber": 7,
+      "name": "_tmp_0",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "file",
+      "columnNumber": 51,
+      "id": 68719476740,
+      "label": "IDENTIFIER",
+      "lineNumber": 16,
+      "name": "file",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476761,
+      "label": "IDENTIFIER",
+      "lineNumber": 28,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "use",
+      "columnNumber": 6,
+      "id": 55834574857,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 26,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2"
+    },
+    {
+      "code": "api",
+      "columnNumber": 6,
+      "id": 68719476739,
+      "label": "IDENTIFIER",
+      "lineNumber": 16,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "require",
+      "columnNumber": 13,
+      "id": 55834574860,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 1,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "Npm.require(\"fs\")",
+      "columnNumber": 9,
+      "id": 30064771101,
+      "label": "CALL",
+      "lineNumber": 1,
+      "name": "require",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "3",
+      "columnNumber": 21,
+      "id": 90194313216,
+      "label": "LITERAL",
+      "lineNumber": 15,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "__ecma.Number"
+    },
+    {
+      "code": "onTest",
+      "columnNumber": 8,
+      "id": 55834574867,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 25,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "\"https://github.com/0a-/meteor-ace-editor\"",
+      "columnNumber": 7,
+      "id": 90194313237,
+      "label": "LITERAL",
+      "lineNumber": 7,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "\"Integrating Ace editor with Meteor since 2015\"",
+      "columnNumber": 11,
+      "id": 90194313235,
+      "label": "LITERAL",
+      "lineNumber": 5,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "\"arch:ace-editor\"",
+      "columnNumber": 10,
+      "id": 90194313230,
+      "label": "LITERAL",
+      "lineNumber": 27,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "add_files",
+      "columnNumber": 10,
+      "id": 55834574849,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 16,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1"
+    },
+    {
+      "code": "fs",
+      "columnNumber": 14,
+      "id": 68719476749,
+      "label": "IDENTIFIER",
+      "lineNumber": 13,
+      "name": "fs",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_0.git",
+      "columnNumber": 2,
+      "id": 30064771112,
+      "label": "CALL",
+      "lineNumber": 7,
+      "name": "<operator>.fieldAccess",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "addFiles",
+      "columnNumber": 6,
+      "id": 55834574859,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 28,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476775,
+      "label": "IDENTIFIER",
+      "lineNumber": 25,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"tinytest\"",
+      "columnNumber": 10,
+      "id": 90194313229,
+      "label": "LITERAL",
+      "lineNumber": 26,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "Npm",
+      "columnNumber": 9,
+      "id": 68719476763,
+      "label": "IDENTIFIER",
+      "lineNumber": 1,
+      "name": "Npm",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"client\"",
+      "columnNumber": 27,
+      "id": 90194313232,
+      "label": "LITERAL",
+      "lineNumber": 28,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "_tmp_0",
+      "columnNumber": 2,
+      "id": 68719476769,
+      "label": "IDENTIFIER",
+      "lineNumber": 6,
+      "name": "_tmp_0",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"1.0.2.1\"",
+      "columnNumber": 19,
+      "id": 90194313221,
+      "label": "LITERAL",
+      "lineNumber": 11,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "\"client\"",
+      "columnNumber": 21,
+      "id": 90194313223,
+      "label": "LITERAL",
+      "lineNumber": 12,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "version",
+      "columnNumber": 2,
+      "id": 55834574864,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 6,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476743,
+      "label": "IDENTIFIER",
+      "lineNumber": 11,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "addFiles",
+      "columnNumber": 6,
+      "id": 55834574855,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 21,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "use",
+      "columnNumber": 6,
+      "id": 55834574852,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 12,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "<lambda>0",
+      "columnNumber": 14,
+      "id": 120259084289,
+      "label": "METHOD_REF",
+      "lineNumber": 10,
+      "name": "package.js::program:<lambda>0",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476765,
+      "label": "IDENTIFIER",
+      "lineNumber": 3,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "{\n  name: \"arch:ace-editor\",\n  summary: \"Integrating Ace editor with Meteor since 2015\",\n  version: \"1.1.1\",\n  git: \"https://github.com/0a-/meteor-ace-editor\",\n}",
+      "columnNumber": 17,
+      "id": 25769803777,
+      "label": "BLOCK",
+      "lineNumber": 3,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "file",
+      "columnNumber": 8,
+      "id": 68719476737,
+      "label": "IDENTIFIER",
+      "lineNumber": 15,
+      "name": "file",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"ace-builds/src-noconflict/\"",
+      "columnNumber": 20,
+      "id": 90194313218,
+      "label": "LITERAL",
+      "lineNumber": 16,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "export",
+      "columnNumber": 6,
+      "id": 55834574856,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 22,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "api",
+      "columnNumber": 24,
+      "id": 111669149699,
+      "label": "METHOD_PARAMETER_IN",
+      "lineNumber": 10,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "file.substr(-3)",
+      "columnNumber": 8,
+      "id": 30064771073,
+      "label": "CALL",
+      "lineNumber": 15,
+      "name": "substr",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476757,
+      "label": "IDENTIFIER",
+      "lineNumber": 26,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476766,
+      "label": "IDENTIFIER",
+      "lineNumber": 3,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "readdirSync",
+      "columnNumber": 17,
+      "id": 55834574853,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 13,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "Package",
+      "columnNumber": 0,
+      "id": 68719476774,
+      "label": "IDENTIFIER",
+      "lineNumber": 25,
+      "name": "Package",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "onUse",
+      "columnNumber": 8,
+      "id": 55834574866,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 10,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "file",
+      "columnNumber": 26,
+      "id": 111669149697,
+      "label": "METHOD_PARAMETER_IN",
+      "lineNumber": 14,
+      "name": "file",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "versionsFrom",
+      "columnNumber": 6,
+      "id": 55834574851,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 11,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476759,
+      "label": "IDENTIFIER",
+      "lineNumber": 27,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_0",
+      "columnNumber": 2,
+      "id": 68719476768,
+      "label": "IDENTIFIER",
+      "lineNumber": 5,
+      "name": "_tmp_0",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"tests.js\"",
+      "columnNumber": 15,
+      "id": 90194313231,
+      "label": "LITERAL",
+      "lineNumber": 28,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "<lambda>1",
+      "columnNumber": 16,
+      "id": 120259084288,
+      "label": "METHOD_REF",
+      "lineNumber": 14,
+      "name": "package.js::program:<lambda>0:<lambda>1",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "true",
+      "columnNumber": 17,
+      "id": 90194313220,
+      "label": "LITERAL",
+      "lineNumber": 17,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "__ecma.Boolean"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476753,
+      "label": "IDENTIFIER",
+      "lineNumber": 21,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476744,
+      "label": "IDENTIFIER",
+      "lineNumber": 11,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476754,
+      "label": "IDENTIFIER",
+      "lineNumber": 22,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"AceEditor\"",
+      "columnNumber": 13,
+      "id": 90194313227,
+      "label": "LITERAL",
+      "lineNumber": 22,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "fs",
+      "columnNumber": 14,
+      "id": 68719476748,
+      "label": "IDENTIFIER",
+      "lineNumber": 13,
+      "name": "fs",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476752,
+      "label": "IDENTIFIER",
+      "lineNumber": 21,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "describe",
+      "columnNumber": 8,
+      "id": 55834574861,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 3,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476745,
+      "label": "IDENTIFIER",
+      "lineNumber": 12,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "api",
+      "columnNumber": 25,
+      "id": 111669149701,
+      "label": "METHOD_PARAMETER_IN",
+      "lineNumber": 25,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"ace-builds/src-noconflict/\" + file",
+      "columnNumber": 20,
+      "id": 30064771078,
+      "label": "CALL",
+      "lineNumber": 16,
+      "name": "<operator>.addition",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\".js\"",
+      "columnNumber": 28,
+      "id": 90194313217,
+      "label": "LITERAL",
+      "lineNumber": 15,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476755,
+      "label": "IDENTIFIER",
+      "lineNumber": 22,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"ace-builds/src-noconflict\"",
+      "columnNumber": 29,
+      "id": 90194313224,
+      "label": "LITERAL",
+      "lineNumber": 13,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "substr",
+      "columnNumber": 13,
+      "id": 55834574848,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 15,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1"
+    },
+    {
+      "code": "isAsset",
+      "columnNumber": 8,
+      "id": 55834574850,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 17,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0:<lambda>1"
+    },
+    {
+      "code": "\"core.js\"",
+      "columnNumber": 15,
+      "id": 90194313225,
+      "label": "LITERAL",
+      "lineNumber": 21,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "\"tracker\"",
+      "columnNumber": 10,
+      "id": 90194313222,
+      "label": "LITERAL",
+      "lineNumber": 12,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476756,
+      "label": "IDENTIFIER",
+      "lineNumber": 26,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>2",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "<lambda>2",
+      "columnNumber": 15,
+      "id": 120259084290,
+      "label": "METHOD_REF",
+      "lineNumber": 25,
+      "name": "package.js::program:<lambda>2",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program"
+    },
+    {
+      "code": "files",
+      "columnNumber": 2,
+      "id": 68719476750,
+      "label": "IDENTIFIER",
+      "lineNumber": 14,
+      "name": "files",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "_tmp_0.name",
+      "columnNumber": 2,
+      "id": 30064771106,
+      "label": "CALL",
+      "lineNumber": 4,
+      "name": "<operator>.fieldAccess",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "ANY"
+    },
+    {
+      "code": "\"arch:ace-editor\"",
+      "columnNumber": 8,
+      "id": 90194313234,
+      "label": "LITERAL",
+      "lineNumber": 4,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program",
+      "typeFullName": "__ecma.String"
+    },
+    {
+      "code": "forEach",
+      "columnNumber": 8,
+      "id": 55834574854,
+      "label": "FIELD_IDENTIFIER",
+      "lineNumber": 14,
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0"
+    },
+    {
+      "code": "api",
+      "columnNumber": 2,
+      "id": 68719476746,
+      "label": "IDENTIFIER",
+      "lineNumber": 12,
+      "name": "api",
+      "parentFile": "package.js",
+      "parentMethod": "package.js::program:<lambda>0",
+      "typeFullName": "ANY"
+    }
+  ]
 }

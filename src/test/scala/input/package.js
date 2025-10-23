@@ -11,9 +11,9 @@ Package.onUse(function (api) {
   api.versionsFrom("1.0.2.1");
   api.use("tracker", "client");
   var files = fs.readdirSync("ace-builds/src-noconflict");
-  files.forEach(function (file) {
-    if (file.substr(-3) === ".js") {
-      api.add_files("ace-builds/src-noconflict/" + file, "client", {
+  files.forEach(function (file) { //
+    if (file.substr(-3) === ".js") { //
+      api.add_files("ace-builds/src-noconflict/" + file, "client", {//
         isAsset: true,
       });
     }
