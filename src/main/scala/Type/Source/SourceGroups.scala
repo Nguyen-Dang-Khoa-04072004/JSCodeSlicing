@@ -10,18 +10,18 @@ object SourceGroups {
     CodeType("process.env"), // Biến object
 
     // Module imports
-    CallType("require"),        // Function call
-    CallType("require.resolve"),// Function call
-    CallType("import"),         // Function/keyword
+    CallType("require"), // Function call
+    CallType("require.resolve"), // Function call
+    CallType("import"), // Function/keyword
 
     // Config loaders
-    CallType("cleanEnv"),       // Function call từ envalid
-    CallType("dotenv.config"),  // Function call từ dotenv
+    CallType("cleanEnv"), // Function call từ envalid
+    CallType("dotenv.config"), // Function call từ dotenv
 
     // Argument parsers
-    CallType("yargs.argv"),     // Property access từ yargs
+    CallType("yargs.argv"), // Property access từ yargs
     CallType("commander.opts"), // Function call từ commander
-    CallType("config.get")      // Function call từ config
+    CallType("config.get") // Function call từ config
   )
 
   private val FILE_SYSTEM_SOURCES: Seq[TypeDefinition] = Seq(
@@ -51,26 +51,24 @@ object SourceGroups {
   private val NETWORK_SOURCES: Seq[TypeDefinition] = Seq(
     // HTTP/HTTPS request functions (nhận response)
     RegexType(
-      """http\.get\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
+      """\d+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\d+"""
     ),
     RegexType(
-      """https\.get\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
+      """.*?https?://\S+.*?"""
     ),
     RegexType(
-      """axios\.get\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
+      """.*?http?://[^\s'"]+.*?"""
     ),
     RegexType(
-      """axios\.post\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
+      """.*?^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$.*?"""
     ),
-    RegexType(
-      """axios\.request\(\s*\{[^\}]*url:\s*['"`](https?:\/\/[^\s'"`]+)['"`]"""
-    ),
-    RegexType(
-      """request\.get\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
-    ),
-    RegexType(
-      """got\.get\(['"`](https?:\/\/[^\s'"`]+)['"`]"""
-    ),
+    CallType("http.get"),
+    CallType("http.request"),
+    CallType("https.get"),
+    CallType("https.request"),
+    CallType("axios.get"),
+    CallType("axios.request"),
+    CallType("axios.post"),
     CallType("fetch"),
 
     // TCP/UDP socket functions

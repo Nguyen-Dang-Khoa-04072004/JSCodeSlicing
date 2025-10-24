@@ -22,6 +22,10 @@ object Main {
           ) + "/"
         )
       )
+
+      val sourceMethod = codeSlice.getSourceMethodGroup
+
+      codeSlice.close()
     }
   }
 
