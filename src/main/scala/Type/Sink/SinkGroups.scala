@@ -27,7 +27,7 @@ object SinkGroups {
     CallType("axios.put"),
     CallType("axios.patch"),
     CallType("axios.delete"),
-    CallType("fetch"),
+//    CallType("fetch"),
     CallType("write"), // e.g. req.write(...)
     CallType("end"), // e.g. req.end()
     CallType("destroy"), // e.g. req.destroy()
@@ -61,7 +61,7 @@ object SinkGroups {
     CallType("http.request"),
     CallType("https.request"),
     CallType("axios.post"),
-    CallType("fetch")
+//    CallType("fetch")
   )
 
   private val DATABASE_SINKS: Seq[TypeDefinition] = Seq(
@@ -109,7 +109,7 @@ object SinkGroups {
     // Data exfiltration functions
     CallType("https.request"),
     CallType("http.request"),
-    CallType("fetch"),
+//    CallType("fetch"),
     CallType("axios.post"),
     CallType("fetch.post")
   )
@@ -206,7 +206,7 @@ object SinkGroups {
     CallType("http.request"),
     CallType("https.request"),
     CallType("axios.get"),
-    CallType("fetch"),
+//    CallType("fetch"),
     CallType("request.get"),
     CallType("curl")
   )

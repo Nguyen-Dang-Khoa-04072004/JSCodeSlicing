@@ -2,24 +2,27 @@ package CodeSlice
 
 import io.joern.jssrc2cpg.{Config, JsSrc2Cpg}
 import io.shiftleft.codepropertygraph.generated.Cpg
+
 import scala.util.{Failure, Success}
 import Type.Source.SourceGroups
 import Type.Sink.SinkGroups
 import Type.{CallType, CodeType, RegexType}
 import io.joern.joerncli.{JoernParse, JoernSlice}
-import CodeSlice.Group.{SourceMethodGroup, SinkMethodGroup}
+import CodeSlice.Group.{SinkMethodGroup, SourceMethodGroup}
 import CodeSlice.Path.PathLine
-import io.shiftleft.semanticcpg.language._
-import io.joern.dataflowengineoss.language._
+import io.shiftleft.semanticcpg.language.*
+import io.joern.dataflowengineoss.language.*
+
 import scala.collection.mutable.Set
 import java.nio.file.Paths
 import CodeSlice.Group.CustomNode
+
 import scala.util.matching.Regex
-import io.joern.dataflowengineoss.language._
+import io.joern.dataflowengineoss.language.*
 import io.shiftleft.codepropertygraph.Cpg
-import io.shiftleft.semanticcpg.layers._
-import io.shiftleft.codepropertygraph.generated.nodes.Call
+import io.shiftleft.semanticcpg.layers.*
 import io.joern.dataflowengineoss.queryengine.EngineContext
+import io.shiftleft.codepropertygraph.generated.nodes.Call
 
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
@@ -148,23 +151,26 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
       sinkMethodGroup: SinkMethodGroup
   ): PathLine = {
     var pathLine = new PathLine()
-    for (
-      sourceMethod <- sourceMethodGroup.getAllNodes.collect { case c: Call =>
-        c
-      }
-    ) {
-      for (
-        sinkMethod <- sinkMethodGroup.getAllNodes.collect { case c: Call => c }
-      ) {
-        // val flows = sinkMethod.reachableBy(sourceMethod)
-        // flows.p.foreach(f => {
-        //   f.lines().forEach { elem =>
-        //     println(elem)
-        //   }
-        //   println("==============================\n")
-        // })
+    for (sourceMethod <- sourceMethodGroup.getAllNodes.collect { case c: Call => c }) {
+      for (sinkMethod <- sinkMethodGroup.getAllNodes.collect { case c: Call => c }) {
+
+        val sourceTrav = cpg.call.id(sourceMethod.id)
+        val sinkTrav = cpg.call.id(sinkMethod.id)
+
+        val flows = sinkTrav.reachableByFlows(sourceTrav)
+        if(!flows.isEmpty) {
+          println(s"==== Flow from source ${sourceMethod.code} to sink ${sinkMethod.code} ====")
+          println("---- Path ----")
+                  flows.foreach { path =>
+                    path.elements.foreach { e =>
+                      e.foreach(node => println(node.code))
+                    }
+                  }
+          println("----End Path ----")
+        }
       }
     }
+
 
     pathLine
   }
