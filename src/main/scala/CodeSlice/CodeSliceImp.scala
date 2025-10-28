@@ -16,6 +16,10 @@ import java.nio.file.Paths
 import CodeSlice.Group.CustomNode
 import scala.util.matching.Regex
 import io.joern.dataflowengineoss.language._
+import io.shiftleft.codepropertygraph.Cpg
+import io.shiftleft.semanticcpg.layers._
+import io.shiftleft.codepropertygraph.generated.nodes.Call
+import io.joern.dataflowengineoss.queryengine.EngineContext
 
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
@@ -41,6 +45,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
   private val edges = cpg.graph.allEdges.toSet
   private val files = cpg.file.toSet
+  private implicit val engineContext: EngineContext = EngineContext()
 
   // Print all edges for debugging
   edges.foreach(edge =>
@@ -143,20 +148,21 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
       sinkMethodGroup: SinkMethodGroup
   ): PathLine = {
     var pathLine = new PathLine()
-    for (sourceMethod <- sourceMethodGroup.getAllNodes) {
-      for (sinkMethod <- sinkMethodGroup.getAllNodes) {
-        for (edge <- edges) {
-          if (
-            edge.src.id
-              .equals(sourceMethod.id) && (edge.dst.id.equals(sinkMethod.id))
-          ) {
-            // Có đường trực tiếp từ source -> sink
-            pathLine.addEdge(edge)
-          } else {
-            // Lưu lại đường tiềm năng từ source -> sink
-            pathLine.addPotentialPaths(sourceMethod, sinkMethod)
-          }
-        }
+    for (
+      sourceMethod <- sourceMethodGroup.getAllNodes.collect { case c: Call =>
+        c
+      }
+    ) {
+      for (
+        sinkMethod <- sinkMethodGroup.getAllNodes.collect { case c: Call => c }
+      ) {
+        // val flows = sinkMethod.reachableBy(sourceMethod)
+        // flows.p.foreach(f => {
+        //   f.lines().forEach { elem =>
+        //     println(elem)
+        //   }
+        //   println("==============================\n")
+        // })
       }
     }
 
