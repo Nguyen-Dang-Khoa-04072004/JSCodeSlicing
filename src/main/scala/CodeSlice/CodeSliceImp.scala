@@ -15,6 +15,7 @@ import scala.collection.mutable.Set
 import java.nio.file.Paths
 import CodeSlice.Group.CustomNode
 import scala.util.matching.Regex
+import io.joern.dataflowengineoss.language._
 
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
@@ -37,6 +38,16 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
         )
     }
   }
+
+  private val edges = cpg.graph.allEdges.toSet
+  private val files = cpg.file.toSet
+
+  // Print all edges for debugging
+  edges.foreach(edge =>
+    println(
+      f"label=${edge.label}, src=${edge.src.id}, dst=${edge.dst.id}"
+    )
+  )
 
   // TODO: thang
   override def getSinkMethodGroup: SinkMethodGroup = {
@@ -130,7 +141,28 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
   override def getPathLine(
       sourceMethodGroup: SourceMethodGroup,
       sinkMethodGroup: SinkMethodGroup
-  ): PathLine = ???
+  ): PathLine = {
+    var pathLine = new PathLine()
+    for (sourceMethod <- sourceMethodGroup.getAllNodes) {
+      for (sinkMethod <- sinkMethodGroup.getAllNodes) {
+        for (edge <- edges) {
+          if (
+            edge.src.id
+              .equals(sourceMethod.id) && (edge.dst.id.equals(sinkMethod.id))
+          ) {
+            // Có đường trực tiếp từ source -> sink
+            pathLine.addEdge(edge)
+          } else {
+            // Lưu lại đường tiềm năng từ source -> sink
+            pathLine.addPotentialPaths(sourceMethod, sinkMethod)
+          }
+        }
+      }
+    }
+
+    pathLine
+  }
+
   // TODO: thang
   override def extractCode(pathLine: PathLine): String = ???
 

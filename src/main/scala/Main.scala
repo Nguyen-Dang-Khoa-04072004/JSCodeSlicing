@@ -26,6 +26,9 @@ object Main {
       val sourceMethod = codeSlice.getSourceMethodGroup
       print("\n====================\n")
       val sinkMethod = codeSlice.getSinkMethodGroup
+      print("\n====================\n")
+      val pathLine = codeSlice.getPathLine(sourceMethod, sinkMethod)
+      print("\n====================\n")
       codeSlice.close()
     }
   }

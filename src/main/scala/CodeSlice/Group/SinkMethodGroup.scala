@@ -19,4 +19,6 @@ class SinkMethodGroup {
       customNode.dumpNodeInfo()
     }
   }
+
+  def getAllNodes: Iterable[StoredNode] = nodes.values
 }

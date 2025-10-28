@@ -27,7 +27,15 @@ object SinkGroups {
     CallType("axios.put"),
     CallType("axios.patch"),
     CallType("axios.delete"),
-    CallType("fetch")
+    CallType("fetch"),
+    CallType("write"), // e.g. req.write(...)
+    CallType("end"), // e.g. req.end()
+    CallType("destroy"), // e.g. req.destroy()
+
+    // Logging functions (potential data-leak sinks)
+    CallType("console.log"),
+    CallType("console.error"),
+    CallType("console.warn")
   )
 
   private val NETWORK_SINKS: Seq[TypeDefinition] = Seq(
@@ -78,11 +86,15 @@ object SinkGroups {
 
   private val FILE_SYSTEM_SINKS: Seq[TypeDefinition] = Seq(
     // File system write functions
+    CallType("fs.write"),
+    CallType("fs.writeSync"),
     CallType("fs.writeFile"),
     CallType("fs.writeFileSync"),
     CallType("fs.appendFile"),
     CallType("fs.appendFileSync"),
-    CallType("fs.createWriteStream")
+    CallType("fs.createWriteStream"),
+    CallType("fs.open"),
+    CallType("fs.openSync")
   )
 
   private val INPUT_VALIDATION_SINKS: Seq[TypeDefinition] = Seq(
@@ -162,6 +174,8 @@ object SinkGroups {
     CallType("child_process.execSync"),
     CallType("child_process.spawn"),
     CallType("child_process.execFile"),
+    CallType("child_process.execFileSync"),
+    CallType("child_process.fork"),
     CallType("os.system")
   )
 

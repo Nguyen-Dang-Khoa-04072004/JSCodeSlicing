@@ -10,7 +10,7 @@ class SourceMethodGroup {
 
   def appendNode(newNode: StoredNode): Unit = {
     val nodeId: Long = newNode.id()
-    nodes.getOrElseUpdate(nodeId, newNode)
+    nodes.addOne(nodeId, newNode)
   }
 
   def dumpNodeInfo(): Unit = {
@@ -19,5 +19,7 @@ class SourceMethodGroup {
       customNode.dumpNodeInfo()
     }
   }
+
+  def getAllNodes: Iterable[StoredNode] = nodes.values
 
 }
