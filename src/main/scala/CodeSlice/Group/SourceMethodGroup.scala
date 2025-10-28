@@ -1,24 +1,22 @@
 package CodeSlice.Group
 
 import io.shiftleft.codepropertygraph.generated.Cpg
-
+import io.shiftleft.codepropertygraph.generated.nodes.*
 import scala.collection.mutable.{Set, Map}
 import CodeSlice.Group.CustomNode
 
 class SourceMethodGroup {
-  private val nodes = scala.collection.mutable.Map[Long, CustomNode]()
+  private val nodes = scala.collection.mutable.Map[Long, StoredNode]()
 
-  def appendNode(newNode: CustomNode): Unit = {
-
-    if (!this.nodes.contains(newNode.nodeId)) {
-      this.nodes(newNode.nodeId) = newNode
-    }
+  def appendNode(newNode: StoredNode): Unit = {
+    val nodeId: Long = newNode.id()
+    nodes.getOrElseUpdate(nodeId, newNode)
   }
 
   def dumpNodeInfo(): Unit = {
-    println(s"Dumping info for ${nodes.size} nodes in SourceMethodGroup:")
     for ((_, node) <- nodes) {
-      node.dumpNodeInfo()
+      val customNode = new CustomNode(node)
+      customNode.dumpNodeInfo()
     }
   }
 

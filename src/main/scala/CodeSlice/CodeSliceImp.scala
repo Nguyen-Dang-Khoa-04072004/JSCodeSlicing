@@ -45,19 +45,35 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
     for (sink <- SinkGroups.getAllSinks) {
       sink match {
         case CallType(value) =>
-        // TODO: Handle CallType sinks - process function calls
-        // Example: find calls to eval, exec, fs.writeFile, etc.
+          val calls = cpg.call
+            .where(_.name(value))
+            .toSet
+          for (call <- calls) {
+            // val storeNode = new CustomNode(call)
+            sinkMethodGroup.appendNode(call)
+          }
 
         case CodeType(value) =>
-        // TODO: Handle CodeType sinks - process code/variable references
-        // Example: find references to innerHTML, location.href, etc.
+          val codes = cpg.identifier
+            .where(_.name(value))
+            .toSet
+          for (code <- codes) {
+            // val storeNode = new CustomNode(code)
+            sinkMethodGroup.appendNode(code)
+          }
 
         case RegexType(value) =>
-        // TODO: Handle RegexType sinks - process pattern matches
-        // Example: find patterns matching dangerous operations
+          val pattern = value.r
+          val patternMatches = cpg.call
+            .where(_.name(pattern.regex))
+            .toSet
+          for (patternMatch <- patternMatches) {
+            // val storeNode = new CustomNode(patternMatch)
+            sinkMethodGroup.appendNode(patternMatch)
+          }
       }
     }
-
+    sinkMethodGroup.dumpNodeInfo()
     sinkMethodGroup
   }
 
@@ -74,8 +90,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             .toSet
 
           for (call <- calls) {
-            val storeNode = new CustomNode(call)
-            sourceMethodGroup.appendNode(storeNode)
+            // val storeNode = new CustomNode(call)
+            sourceMethodGroup.appendNode(call)
           }
 
         case CodeType(value) =>
@@ -84,8 +100,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             .toSet
 
           for (code <- codes) {
-            val storeNode = new CustomNode(code)
-            sourceMethodGroup.appendNode(storeNode)
+            // val storeNode = new CustomNode(code)
+            sourceMethodGroup.appendNode(code)
           }
 
         case RegexType(value) =>
@@ -95,8 +111,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             .toSet
 
           for (patternMatch <- patternMatches) {
-            val storeNode = new CustomNode(patternMatch)
-            sourceMethodGroup.appendNode(storeNode)
+            // val storeNode = new CustomNode(patternMatch)
+            sourceMethodGroup.appendNode(patternMatch)
           }
       }
     }

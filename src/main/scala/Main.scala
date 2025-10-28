@@ -24,7 +24,8 @@ object Main {
       )
 
       val sourceMethod = codeSlice.getSourceMethodGroup
-
+      print("\n====================\n")
+      val sinkMethod = codeSlice.getSinkMethodGroup
       codeSlice.close()
     }
   }
