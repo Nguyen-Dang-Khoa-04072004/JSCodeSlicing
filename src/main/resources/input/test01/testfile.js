@@ -1,21 +1,7 @@
-// Simple dataflow test
-
-function readUserInput() {
-  // Simulate untrusted user input (source)
-  return "alert('hacked!')";
-}
-
-function processInput(input) {
-  // Just pass it through (intermediate function)
-  return input.trim();
-}
-
+const fs = require("fs");
 function main() {
-  const userInput = fs.readFile();
-  const cleanedInput = processInput(userInput);
-
-  // Dangerous sink (eval)
-  eval(cleanedInput);
+  const data = fs.readFileSync("user_input.txt", "utf8");
+  const trimmed = data.trim();
+  eval(trimmed);
 }
-
 main();
