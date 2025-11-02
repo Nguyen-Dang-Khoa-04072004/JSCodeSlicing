@@ -12,6 +12,7 @@ object SinkGroups {
     CallType("execSync"),
     CallType("spawn"),
     CallType("spawnSync"),
+    CallType("send"),
 
     // File system write functions
     CallType("fs.writeFile"),

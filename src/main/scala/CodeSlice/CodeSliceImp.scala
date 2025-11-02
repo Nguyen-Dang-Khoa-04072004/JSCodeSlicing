@@ -30,6 +30,7 @@ import io.joern.dataflowengineoss.semanticsloader.{FlowSemantic, NoCrossTaintSem
 import io.joern.dataflowengineoss.slicing.{DataFlowConfig, DataFlowSlicing}
 import io.shiftleft.codepropertygraph.generated.nodes.{Call, Method, StoredNode}
 import io.shiftleft.semanticcpg.Overlays
+import scala.collection.mutable.ListBuffer
 
 // 30064771073 - 30064771076 - 30064771078
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
@@ -159,8 +160,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                               sourceMethodGroup: SourceMethodGroup,
                               sinkMethodGroup: SinkMethodGroup
                             ): PathLine = {
-        for (sourceMethod <- sourceMethodGroup.getAllNodes.filter(node => node.label() == "CALL").toList) {
-            for (sinkMethod <- sinkMethodGroup.getAllNodes.filter(node => node.label() == "CALL").toList) {
+        for (sourceMethod <- sourceMethodGroup.getAllNodes) {
+            for (sinkMethod <- sinkMethodGroup.getAllNodes) {
                 if (sourceMethod != sinkMethod) {
                     val flows = reachableByFlow(sourceMethod,sinkMethod)
 
