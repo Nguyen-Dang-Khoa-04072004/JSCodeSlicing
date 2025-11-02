@@ -6,19 +6,19 @@ import scala.collection.mutable.{Set, Map}
 import CodeSlice.Group.CustomNode
 
 class SinkMethodGroup {
-  private val nodes = scala.collection.mutable.Map[Long, StoredNode]()
+  private val nodes = Map[Long, CustomNode]()
 
-  def appendNode(newNode: StoredNode): Unit = {
-    val nodeId: Long = newNode.id()
+  def appendNode(newNodeId: Long, lineNumber: Int, columnNumber: Int, label: String, fileName: String, code: String): Unit = {
+    val nodeId: Long = newNodeId
+    val newNode = new CustomNode(nodeId, lineNumber, columnNumber, label, fileName, code)
     nodes.getOrElseUpdate(nodeId, newNode)
   }
 
   def dumpNodeInfo(): Unit = {
     for ((_, node) <- nodes) {
-      val customNode = new CustomNode(node)
-      customNode.dumpNodeInfo()
+      node.dumpNodeInfo()
     }
   }
 
-  def getAllNodes: Iterable[StoredNode] = nodes.values
+  def getAllNodes: Iterable[CustomNode] = nodes.values
 }

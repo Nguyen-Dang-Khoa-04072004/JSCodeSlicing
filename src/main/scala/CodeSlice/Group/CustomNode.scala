@@ -4,19 +4,19 @@ import io.shiftleft.codepropertygraph.generated.nodes.*
 import io.shiftleft.codepropertygraph.generated.language.*
 
 class CustomNode(
-    node: StoredNode
+    val newNodeId: Long,
+    val newNodeLineNumber: Int,
+    val newNodeColumnNumber: Int,
+    val newNodeLabel: String,
+    val newNodeFileName: String,
+    val newNodeCode: String
 ) {
-  val nodeId: Long = node.id()
-  val code: String = node.propertyOption[String]("CODE").getOrElse("")
-  val lineNumber: Int = node.propertyOption[Int]("LINE_NUMBER").getOrElse(0)
-  val columnNumber: Int = node.propertyOption[Int]("COLUMN_NUMBER").getOrElse(0)
-  val label: String = node.label
-  val fileName: String =
-    node._sourceFileIn
-      .toSeq
-      .headOption
-      .map(_.propertyOption[String]("NAME").getOrElse("UNKNOWN"))
-      .getOrElse("UNKNOWN")
+  val nodeId: Long = newNodeId
+  val code: String = newNodeCode
+  val lineNumber: Int = newNodeLineNumber
+  val columnNumber: Int = newNodeColumnNumber
+  val label: String = newNodeLabel
+  val fileName: String = newNodeFileName
 
 
   def dumpNodeInfo(): Unit = {
