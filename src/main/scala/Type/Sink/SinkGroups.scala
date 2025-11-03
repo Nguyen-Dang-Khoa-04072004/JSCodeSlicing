@@ -3,16 +3,16 @@ import Type.{CallType, TypeDefinition}
 
 object SinkGroups {
   private val COMMON_SINKS: Seq[TypeDefinition] = Seq(
-    // Code execution functions
-    CallType("eval"),
-    CallType("Function"),
-    CallType("setTimeout"),
-    CallType("setInterval"),
-    CallType("exec"),
-    CallType("execSync"),
-    CallType("spawn"),
-    CallType("spawnSync"),
-    CallType("send"),
+    // Code execution functions - Critical for malware detection
+    CallType("eval"), // Direct eval
+    CallType("Function"), // new Function() - dynamic code
+    CallType("setTimeout"), // Delayed execution
+    CallType("setInterval"), // Repeated execution
+    CallType("exec"), // Child process execution
+    CallType("execSync"), // Synchronous execution
+    CallType("spawn"), // Spawn new process
+    CallType("spawnSync"), // Synchronous spawn
+    CallType("send"), // IPC message sending
 
     // File system write functions
     CallType("fs.writeFile"),
@@ -36,7 +36,34 @@ object SinkGroups {
     // Logging functions (potential data-leak sinks)
     CallType("console.log"),
     CallType("console.error"),
-    CallType("console.warn")
+    CallType("console.warn"),
+    
+    // Windows Scripting Host (WSH) Execution - Common in malware
+    CallType("run"), // WScript.Shell.Run() - executes commands
+    CallType("Run"), // Case variation
+    CallType("Exec"), // WScript.Shell.Exec() - executes with output
+    CallType("ShellExecute"), // Shell.Application.ShellExecute()
+    
+    // PowerShell and CMD execution
+    CallType("Invoke-Expression"), // PowerShell code execution
+    CallType("Start-Process"), // PowerShell process start
+    CallType("Invoke-Command"), // PowerShell remote execution
+    CallType("Invoke-Item"), // PowerShell file execution
+    
+    // Dynamic code loading - Obfuscation techniques
+    CallType("DownloadFile"), // System.Net.Webclient.DownloadFile
+    CallType("DownloadString"), // Download and execute
+    CallType("DownloadData"), // Download binary data
+    
+    // COM Object methods - Windows automation
+    CallType("CreateObject"), // Create ActiveX/COM objects
+    CallType("GetObject"), // Get existing objects
+    
+    // Other dangerous operations
+    CallType("execFile"), // Execute file directly
+    CallType("execFileSync"), // Sync file execution
+    CallType("fork"), // Fork child process
+    CallType("execPath") // Path to executable
   )
 
   private val NETWORK_SINKS: Seq[TypeDefinition] = Seq(

@@ -196,17 +196,23 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                               sourceMethodGroup: SourceMethodGroup,
                               sinkMethodGroup: SinkMethodGroup
                             ): PathLine = {
+        val pathLine = new PathLine()
+        
         for (sourceMethod <- sourceMethodGroup.getAllNodes) {
             for (sinkMethod <- sinkMethodGroup.getAllNodes) {
                 if (sourceMethod != sinkMethod) {
                     val flows = reachableByFlow(sourceMethod,sinkMethod)
-                    displaySlice(flows)
+                    if (flows.size > 2) {
+                        for (node <- flows) {
+                            pathLine.addToSlice(node)
+                        }
+                        pathLine.addPotentialPaths(sourceMethod, Set(sinkMethod))
+                    }
                 }
             }
         }
-
-
-        PathLine()
+        
+        pathLine
     }
 
     // TODO: thang
@@ -218,11 +224,10 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
      *
      * @param sourceMethod
      * @param sinkMethod
-     * @return set of long numbers that is a node identity
+     * @return set of custom nodes output
      */
-    private def reachableByFlow(sourceMethod: CustomNode, sinkMethod: CustomNode): Set[Long] = {
+    private def reachableByFlow(sourceMethod: CustomNode, sinkMethod: CustomNode): Set[CustomNode] = {
         
-        val slices = Set[Long]()
         val currentNodesInSlice = Set[CustomNode]()
         val queue = Queue[CustomNode]()
         val sourceId = sourceMethod.nodeId
@@ -241,8 +246,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                     if (currentNode.code.length > existingNode.code.length) {
                         currentNodesInSlice.remove(existingNode)
                         currentNodesInSlice.add(currentNode)
-                        slices.remove(existingNode.nodeId)
-                        slices.add(currentNode.nodeId)
                         val indexInQueue = queue.indexWhere(node =>
                             node.lineNumber == currentNode.lineNumber &&
                               node.fileName == currentNode.fileName
@@ -257,7 +260,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                 case None =>
                     queue.enqueue(currentNode)
                     currentNodesInSlice.add(currentNode)
-                    slices.add(currentNode.nodeId)
             }
         }
 
@@ -266,7 +268,20 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             val currentNode = queue.front
             queue.dequeue()
             addToSlice(currentNode)
-            val reachableEdges = edges.filter(edge => edge.dst.id == currentNode.nodeId)
+            
+            // Lấy tất cả edges đi vào node hiện tại
+            // Include: CFG (Control Flow), REACHING_DEF (Data Flow), AST edges, ARGUMENT edges
+            val reachableEdges = edges.filter(edge => 
+                edge.dst.id == currentNode.nodeId && 
+                (edge.label == "CFG" || 
+                 edge.label == "REACHING_DEF" || 
+                 edge.label == "AST" || 
+                 edge.label == "ARGUMENT" ||
+                 edge.label == "RECEIVER" ||
+                 edge.label == "REF" ||
+                 edge.label == "CALL" ||
+                 edge.label == "EVAL_TYPE")
+            )
 
             for (edge <- reachableEdges) {
                 if (edge.src.id == sourceId) {
@@ -297,6 +312,54 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                     identifierNode.code
                                 )
                             }
+                        } else if (nodeLabel == "LITERAL") {
+                            // String literals - important for tracking obfuscated strings
+                            cpg.literal.id(edge.src.id).headOption.map { literalNode =>
+                                new CustomNode(
+                                    literalNode.id,
+                                    literalNode.lineNumber.getOrElse(-1),
+                                    literalNode.columnNumber.getOrElse(-1),
+                                    literalNode.label(),
+                                    literalNode.file.name.headOption.getOrElse(""),
+                                    literalNode.code
+                                )
+                            }
+                        } else if (nodeLabel == "METHOD" || nodeLabel == "METHOD_REF") {
+                            // Method definitions and references
+                            cpg.method.id(edge.src.id).headOption.map { methodNode =>
+                                new CustomNode(
+                                    methodNode.id,
+                                    methodNode.lineNumber.getOrElse(-1),
+                                    methodNode.columnNumber.getOrElse(-1),
+                                    methodNode.label(),
+                                    methodNode.file.name.headOption.getOrElse(""),
+                                    methodNode.code
+                                )
+                            }
+                        } else if (nodeLabel == "BLOCK") {
+                            // Code blocks
+                            cpg.block.id(edge.src.id).headOption.map { blockNode =>
+                                new CustomNode(
+                                    blockNode.id,
+                                    blockNode.lineNumber.getOrElse(-1),
+                                    blockNode.columnNumber.getOrElse(-1),
+                                    blockNode.label(),
+                                    blockNode.file.name.headOption.getOrElse(""),
+                                    blockNode.code
+                                )
+                            }
+                        } else if (nodeLabel == "LOCAL" || nodeLabel == "MEMBER") {
+                            // Local variables and object members
+                            cpg.local.id(edge.src.id).headOption.map { localNode =>
+                                new CustomNode(
+                                    localNode.id,
+                                    localNode.lineNumber.getOrElse(-1),
+                                    localNode.columnNumber.getOrElse(-1),
+                                    localNode.label(),
+                                    localNode.file.name.headOption.getOrElse(""),
+                                    localNode.code
+                                )
+                            }
                         } else {
                             Some(new CustomNode(
                                 edge.src.id,
@@ -315,10 +378,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                 }
             }
         }
-        slices.add(sourceMethod.nodeId)
-        slices
-
-
+        addToSlice(sourceMethod)
+        currentNodesInSlice
     }
 
     /**

@@ -29,6 +29,23 @@ object Main {
       print("\n====================\n")
       val pathLine = codeSlice.getPathLine(sourceMethod, sinkMethod)
       print("\n====================\n")
+      // Export code slice to file
+      val outputDir = "src/main/resources/output/" + ioFileProcessor.getPackageName(packagePath) + "/"
+      val codeSliceOutputPath = ioFileProcessor.saveOutputPackage(
+        outputDir + "code_slice.txt",
+        pathLine.exportCodeSlice()
+      )
+
+      if (codeSliceOutputPath) {
+        println(
+          s"Code slice saved successfully for package ${ioFileProcessor.getPackageName(packagePath)}"
+        )
+      } else {
+        println(
+          s"Failed to save code slice for package ${ioFileProcessor.getPackageName(packagePath)}"
+        )
+      }
+
       codeSlice.close()
     }
   }

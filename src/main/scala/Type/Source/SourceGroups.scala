@@ -21,7 +21,29 @@ object SourceGroups {
     // Argument parsers
     CallType("yargs.argv"), // Property access từ yargs
     CallType("commander.opts"), // Function call từ commander
-    CallType("config.get") // Function call từ config
+    CallType("config.get"), // Function call từ config
+    
+    // Windows Scripting Host (WSH) - Common malware sources
+    CodeType("WScript"), // Global WScript object
+    CodeType("ActiveXObject"), // ActiveX object for IE/WSH
+    CallType("CreateObject"), // Create COM objects
+    CallType("GetObject"), // Get existing COM objects
+    
+    // Dynamic function creation - Often used in obfuscation
+    CallType("Function"), // new Function() constructor
+    CodeType("constructor"), // Access to constructor property
+    
+    // String manipulation - Used in deobfuscation
+    CallType("String.fromCharCode"), // Convert char codes to string
+    CallType("unescape"), // URL decode
+    CallType("decodeURI"), // Decode URI
+    CallType("decodeURIComponent"), // Decode URI component
+    CallType("atob"), // Base64 decode
+    
+    // Obfuscation detection - Variable property access
+    CodeType("window"), // Global window object
+    CodeType("global"), // Global object in Node.js
+    CodeType("globalThis") // Universal global object
   )
 
   private val FILE_SYSTEM_SOURCES: Seq[TypeDefinition] = Seq(
