@@ -61,12 +61,12 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
     private val engineContext = new EngineContext()
 
     // Print all edges for debugging
-    //    edges.foreach(edge =>
-    //        println(
-    //            f"label=${edge.label}, src=${edge.src.id}, dst=${edge.dst.id}"
-    //        )
-    //    )
-    //
+//        edges.foreach(edge =>
+//            println(
+//                f"label=${edge.label}, src=${edge.src.id}, dst=${edge.dst.id}"
+//            )
+//        )
+
     // TODO: thang
     override def getSinkMethodGroup: SinkMethodGroup = {
         val sinkMethodGroup = new SinkMethodGroup()
@@ -205,44 +205,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             for (sinkMethod <- sinkMethodGroup.getAllNodes) {
                 if (sourceMethod != sinkMethod) {
                     val flows = reachableByFlow(sourceMethod,sinkMethod)
-
-                    println("======== Start Flow ==========")
-
-                    val nodesWithLine = flows.toList.map { id =>
-
-                        val node = cpg.graph.node(id)
-                        val code = node.propertyOption[String]("CODE")
-                          .orElse(node.propertyOption[String]("code"))
-                          .getOrElse("")
-
-                        val lineNumber: Long = node.propertyOption[Any]("LINE_NUMBER")
-                          .orElse(node.propertyOption[Any]("lineNumber"))
-                          .map {
-                              case l: Long => l
-                              case i: Int => i.toLong
-                              case s: Short => s.toLong
-                              case _ => Long.MaxValue
-                          }
-                          .getOrElse(Long.MaxValue)
-
-                        (lineNumber, code)
-                    }.filter(_._2.nonEmpty) // keep only nodes with code
-
-                    // Sort by line number
-                    val sortedNodes = nodesWithLine.sortBy(_._1)
-
-                    // Build code slice
-                    val codeSlice = new StringBuilder
-                    for ((line, code) <- sortedNodes) {
-                        codeSlice.append(code + "\n")
-                    }
-
-                    if (codeSlice.nonEmpty) {
-                        println(codeSlice.toString())
-                    }
-
-                    println("======== End Flow ==========")
-
+                    displaySlice(flows)
                 }
             }
         }
@@ -262,7 +225,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
      * @param sinkMethod
      * @return set of long numbers that is a node identity
      */
-    def reachableByFlow(sourceMethod: CustomNode, sinkMethod: CustomNode): Set[Long] = {
+    private def reachableByFlow(sourceMethod: CustomNode, sinkMethod: CustomNode): Set[Long] = {
 
       val slices = Set[Long]()
       val queue = Queue[Long]()
@@ -274,45 +237,57 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
           slices.add(edgeId)
           queue.dequeue()
           val reachableEdges = edges.filter(edge => edge.dst.id == edgeId)
-          // reachableEdges.foreach(edge => {
-          //     if (!slices.contains(edge.src.id )
-          //       && isLineNumberGreaterThan(sourceMethod,cpg.all.id(edge.src.id()).next())
-          //     && isLineNumberGreaterThan(cpg.all.id(edge.src.id()).next(), sinkMethod) ){
-          //         queue.enqueue(edge.src.id)
-          //     }
-          // })
+           reachableEdges.foreach(edge => {
+               if (!slices.contains(edge.src.id)){
+                   queue.enqueue(edge.src.id)
+               }
+           })
       }
       slices.add(sourceMethod.nodeId)
       slices
     }
 
     /**
-     * get a line number of the node
+     * Print out the slice to sreen
      *
-     * @param node
-     * @return a line number of node in the code
+     * @param flows set of node ids
      */
-    def extractLineNumber(node : CustomNode) : Long = {
-        // node.propertyOption[Any]("LINE_NUMBER")
-        //   .orElse(node.propertyOption[Any]("lineNumber"))
-        //   .map {
-        //       case l: Long => l
-        //       case i: Int => i.toLong
-        //       case s: Short => s.toLong
-        //       case _ => Long.MaxValue
-        //   }
-        //   .getOrElse(Long.MaxValue)
-        1L
-    }
+    def displaySlice(flows : Set[Long]): Unit = {
+        println("======== Start Flow ==========")
 
-    /**
-     * check a line number of current node whether is greater than source node
-     *
-     * @param sourceNode
-     * @param currentNode
-     * @return result of comparing source node's line number and current node's line number
-     */
-    def isLineNumberGreaterThan(sourceNode : CustomNode, currentNode : CustomNode): Boolean = {
-      extractLineNumber(sourceNode) <= extractLineNumber(currentNode)
+        val nodesWithLine = flows.toList.map { id =>
+
+            val node = cpg.graph.node(id)
+            val code = node.propertyOption[String]("CODE")
+              .orElse(node.propertyOption[String]("code"))
+              .getOrElse("")
+
+            val lineNumber: Long = node.propertyOption[Any]("LINE_NUMBER")
+              .orElse(node.propertyOption[Any]("lineNumber"))
+              .map {
+                  case l: Long => l
+                  case i: Int => i.toLong
+                  case s: Short => s.toLong
+                  case _ => Long.MaxValue
+              }
+              .getOrElse(Long.MaxValue)
+
+            (lineNumber, code)
+        }.filter(_._2.nonEmpty) // keep only nodes with code
+
+        // Sort by line number
+        val sortedNodes = nodesWithLine.sortBy(_._1)
+
+        // Build code slice
+        val codeSlice = new StringBuilder
+        for ((line, code) <- sortedNodes) {
+            codeSlice.append(code + "\n")
+        }
+
+        if (codeSlice.nonEmpty) {
+            println(codeSlice.toString())
+        }
+
+        println("======== End Flow ==========")
     }
 }
