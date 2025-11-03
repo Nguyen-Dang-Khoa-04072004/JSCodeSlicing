@@ -78,7 +78,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                       .where(_.name(value))
                       .toSet
                     for (call <- calls) {
-                        // val storeNode = new CustomNode(call)
                         sinkMethodGroup.appendNode(
                           call.id(),
                           call.lineNumber.getOrElse(-1),
@@ -94,7 +93,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                       .where(_.name(value))
                       .toSet
                     for (code <- codes) {
-                        // val storeNode = new CustomNode(code)
                         sinkMethodGroup.appendNode(
                           code.id(),
                           code.lineNumber.getOrElse(-1),
@@ -111,7 +109,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                       .where(_.name(pattern.regex))
                       .toSet
                     for (patternMatch <- patternMatches) {
-                        // val storeNode = new CustomNode(patternMatch)
                         sinkMethodGroup.appendNode(
                           patternMatch.id(),
                           patternMatch.lineNumber.getOrElse(-1),
@@ -156,7 +153,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                       .toSet
 
                     for (code <- codes) {
-                        // val storeNode = new CustomNode(code)
                         sourceMethodGroup.appendNode(
                           code.id(),
                           code.lineNumber.getOrElse(-1),
@@ -174,7 +170,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                       .toSet
 
                     for (patternMatch <- patternMatches) {
-                        // val storeNode = new CustomNode(patternMatch)
                         sourceMethodGroup.appendNode(
                           patternMatch.id(),
                           patternMatch.lineNumber.getOrElse(-1),
@@ -226,25 +221,104 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
      * @return set of long numbers that is a node identity
      */
     private def reachableByFlow(sourceMethod: CustomNode, sinkMethod: CustomNode): Set[Long] = {
+        
+        val slices = Set[Long]()
+        val currentNodesInSlice = Set[CustomNode]()
+        val queue = Queue[CustomNode]()
+        val sourceId = sourceMethod.nodeId
+        var reachable : Boolean = false
+        queue.enqueue(sinkMethod)
 
-      val slices = Set[Long]()
-      val queue = Queue[Long]()
-      val sourceId = sourceMethod.nodeId
-      var reachable : Boolean = false
-      queue.enqueue(sinkMethod.nodeId)
-      while (!queue.isEmpty) {
-          val edgeId = queue.front
-          slices.add(edgeId)
-          queue.dequeue()
-          val reachableEdges = edges.filter(edge => edge.dst.id == edgeId)
-           reachableEdges.foreach(edge => {
-               if (!slices.contains(edge.src.id)){
-                   queue.enqueue(edge.src.id)
-               }
-           })
-      }
-      slices.add(sourceMethod.nodeId)
-      slices
+        def addToSlice(currentNode: CustomNode): Unit = {
+            
+            val existingNodeOpt = currentNodesInSlice.find(node =>
+                node.lineNumber == currentNode.lineNumber &&
+                  node.fileName == currentNode.fileName
+            )
+
+            existingNodeOpt match {
+                case Some(existingNode) =>
+                    if (currentNode.code.length > existingNode.code.length) {
+                        currentNodesInSlice.remove(existingNode)
+                        currentNodesInSlice.add(currentNode)
+                        slices.remove(existingNode.nodeId)
+                        slices.add(currentNode.nodeId)
+                        val indexInQueue = queue.indexWhere(node =>
+                            node.lineNumber == currentNode.lineNumber &&
+                              node.fileName == currentNode.fileName
+                        )
+
+                        if (indexInQueue != -1) {
+                            queue.update(indexInQueue, currentNode)
+                        } else {
+                            queue.enqueue(currentNode)
+                        }
+                    }
+                case None =>
+                    queue.enqueue(currentNode)
+                    currentNodesInSlice.add(currentNode)
+                    slices.add(currentNode.nodeId)
+            }
+        }
+
+        while (!queue.isEmpty) {
+            
+            val currentNode = queue.front
+            queue.dequeue()
+            addToSlice(currentNode)
+            val reachableEdges = edges.filter(edge => edge.dst.id == currentNode.nodeId)
+
+            for (edge <- reachableEdges) {
+                if (edge.src.id == sourceId) {
+                    reachable = true
+                } else {
+                    val nodeLabel = edge.src.label()
+
+                    val customNodeOpt: Option[CustomNode] = {
+                        if (nodeLabel == "CALL") {
+                            cpg.call.id(edge.src.id).headOption.map { callNode =>
+                                new CustomNode(
+                                    callNode.id,
+                                    callNode.lineNumber.getOrElse(-1),
+                                    callNode.columnNumber.getOrElse(-1),
+                                    callNode.label(),
+                                    callNode.file.name.headOption.getOrElse(""),
+                                    callNode.code
+                                )
+                            }
+                        } else if (nodeLabel == "IDENTIFIER") {
+                            cpg.identifier.id(edge.src.id).headOption.map { identifierNode =>
+                                new CustomNode(
+                                    identifierNode.id,
+                                    identifierNode.lineNumber.getOrElse(-1),
+                                    identifierNode.columnNumber.getOrElse(-1),
+                                    identifierNode.label(),
+                                    identifierNode.file.name.headOption.getOrElse(""),
+                                    identifierNode.code
+                                )
+                            }
+                        } else {
+                            Some(new CustomNode(
+                                edge.src.id,
+                                edge.src.propertyOption[Int]("LINE_NUMBER").getOrElse(-1),
+                                edge.src.propertyOption[Int]("COLUMN_NUMBER").getOrElse(-1),
+                                edge.src.label(),
+                                "",
+                                edge.src.propertyOption[String]("CODE")
+                                    .orElse(edge.src.propertyOption[String]("code"))
+                                    .getOrElse("")
+                            ))
+                        }
+                    }
+
+                    customNodeOpt.foreach(addToSlice)
+                }
+            }
+        }
+        slices.add(sourceMethod.nodeId)
+        slices
+
+
     }
 
     /**
@@ -272,7 +346,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
               }
               .getOrElse(Long.MaxValue)
 
-            (lineNumber, code)
+            (lineNumber, code, id)
         }.filter(_._2.nonEmpty) // keep only nodes with code
 
         // Sort by line number
@@ -280,7 +354,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
         // Build code slice
         val codeSlice = new StringBuilder
-        for ((line, code) <- sortedNodes) {
+        for ((line, code, id) <- sortedNodes) {
             codeSlice.append(code + "\n")
         }
 
