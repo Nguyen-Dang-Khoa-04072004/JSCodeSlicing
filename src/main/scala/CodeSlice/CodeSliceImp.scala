@@ -197,13 +197,15 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                               sinkMethodGroup: SinkMethodGroup
                             ): PathLine = {
         val pathLine = new PathLine()
+        val sinkNodeIds = sinkMethodGroup.getAllNodes.map(_.nodeId).toSet
         
         for (sourceMethod <- sourceMethodGroup.getAllNodes) {
             for (sinkMethod <- sinkMethodGroup.getAllNodes) {
                 if (sourceMethod != sinkMethod) {
-                    val flows = reachableByFlow(sourceMethod,sinkMethod)
+                    val flows = reachableByFlow(sourceMethod, sinkMethod)
                     if (flows.size > 2) {
-                        for (node <- flows) {
+                        // Không thêm sink node vào slice, chỉ thêm path từ source đến gần sink
+                        for (node <- flows if !sinkNodeIds.contains(node.nodeId)) {
                             pathLine.addToSlice(node)
                         }
                         pathLine.addPotentialPaths(sourceMethod, Set(sinkMethod))
@@ -236,6 +238,11 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
         def addToSlice(currentNode: CustomNode): Unit = {
             
+            // Chỉ thêm node có ý nghĩa vào slice
+            if (!isMeaningfulNode(currentNode)) {
+                return
+            }
+            
             val existingNodeOpt = currentNodesInSlice.find(node =>
                 node.lineNumber == currentNode.lineNumber &&
                   node.fileName == currentNode.fileName
@@ -261,6 +268,30 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                     queue.enqueue(currentNode)
                     currentNodesInSlice.add(currentNode)
             }
+        }
+        
+        // Helper method để kiểm tra node có ý nghĩa không
+        def isMeaningfulNode(node: CustomNode): Boolean = {
+            val code = node.code.trim
+            
+            // Loại bỏ code rỗng
+            if (code.isEmpty) return false
+            
+            // Loại bỏ các pattern không có ý nghĩa
+            val nonMeaningfulPatterns = Set(
+                "<empty>", ":program", "window", "undefined", 
+                "null", "true", "false", "this"
+            )
+            if (nonMeaningfulPatterns.contains(code)) return false
+            
+            // Loại bỏ các node chỉ chứa ký tự đặc biệt
+            if (!code.exists(_.isLetterOrDigit)) return false
+            
+            // Loại bỏ các label không mang ngữ nghĩa
+            val nonMeaningfulLabels = Set("FILE", "NAMESPACE_BLOCK", "TYPE_DECL", "BINDING")
+            if (nonMeaningfulLabels.contains(node.label)) return false
+            
+            true
         }
 
         while (!queue.isEmpty) {
