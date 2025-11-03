@@ -1,5 +1,5 @@
 package Type.Sink
-import Type.{CallType, TypeDefinition}
+import Type.{CallType, RegexType, TypeDefinition}
 
 object SinkGroups {
   private val COMMON_SINKS: Seq[TypeDefinition] = Seq(
@@ -58,6 +58,13 @@ object SinkGroups {
     // COM Object methods - Windows automation
     CallType("CreateObject"), // Create ActiveX/COM objects
     CallType("GetObject"), // Get existing objects
+    
+    // Computed member access - Obfuscated method calls
+    RegexType(".*\\[.*\\].*"), // Matches computed property access like obj[prop]()
+    
+    // Malicious string patterns in code
+    RegexType(".*cmd\\.exe.*"), // Command execution
+    RegexType(".*powershell.*"), // PowerShell execution
     
     // Other dangerous operations
     CallType("execFile"), // Execute file directly

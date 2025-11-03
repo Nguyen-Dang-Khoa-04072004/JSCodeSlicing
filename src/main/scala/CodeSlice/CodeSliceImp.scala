@@ -105,17 +105,64 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
                 case RegexType(value) =>
                     val pattern = value.r
-                    val patternMatches = cpg.call
-                      .where(_.name(pattern.regex))
+                    
+                    // Tìm trong call names
+                    val callMatches = cpg.call
+                      .filter(call => pattern.matches(call.name))
                       .toSet
-                    for (patternMatch <- patternMatches) {
+                    for (call <- callMatches) {
                         sinkMethodGroup.appendNode(
-                          patternMatch.id(),
-                          patternMatch.lineNumber.getOrElse(-1),
-                          patternMatch.columnNumber.getOrElse(-1),
-                          patternMatch.label(),
-                          patternMatch.file.name.headOption.getOrElse(""),
-                          patternMatch.code,
+                          call.id(),
+                          call.lineNumber.getOrElse(-1),
+                          call.columnNumber.getOrElse(-1),
+                          call.label(),
+                          call.file.name.headOption.getOrElse(""),
+                          call.code,
+                        )
+                    }
+                    
+                    // Tìm trong call code (full expression)
+                    val callCodeMatches = cpg.call
+                      .filter(call => pattern.matches(call.code))
+                      .toSet
+                    for (call <- callCodeMatches) {
+                        sinkMethodGroup.appendNode(
+                          call.id(),
+                          call.lineNumber.getOrElse(-1),
+                          call.columnNumber.getOrElse(-1),
+                          call.label(),
+                          call.file.name.headOption.getOrElse(""),
+                          call.code,
+                        )
+                    }
+                    
+                    // Tìm trong literals (string constants)
+                    val literalMatches = cpg.literal
+                      .filter(lit => pattern.matches(lit.code))
+                      .toSet
+                    for (literal <- literalMatches) {
+                        sinkMethodGroup.appendNode(
+                          literal.id(),
+                          literal.lineNumber.getOrElse(-1),
+                          literal.columnNumber.getOrElse(-1),
+                          literal.label(),
+                          literal.file.name.headOption.getOrElse(""),
+                          literal.code,
+                        )
+                    }
+                    
+                    // Tìm trong identifiers
+                    val identifierMatches = cpg.identifier
+                      .filter(id => pattern.matches(id.code))
+                      .toSet
+                    for (identifier <- identifierMatches) {
+                        sinkMethodGroup.appendNode(
+                          identifier.id(),
+                          identifier.lineNumber.getOrElse(-1),
+                          identifier.columnNumber.getOrElse(-1),
+                          identifier.label(),
+                          identifier.file.name.headOption.getOrElse(""),
+                          identifier.code,
                         )
                     }
             }
@@ -165,18 +212,64 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
                 case RegexType(value) =>
                     val pattern = value.r
-                    val patternMatches = cpg.call
-                      .where(_.name(pattern.regex))
+                    
+                    // Tìm trong call names
+                    val callMatches = cpg.call
+                      .filter(call => pattern.matches(call.name))
                       .toSet
-
-                    for (patternMatch <- patternMatches) {
+                    for (call <- callMatches) {
                         sourceMethodGroup.appendNode(
-                          patternMatch.id(),
-                          patternMatch.lineNumber.getOrElse(-1),
-                          patternMatch.columnNumber.getOrElse(-1),
-                          patternMatch.label(),
-                          patternMatch.file.name.headOption.getOrElse(""),
-                          patternMatch.code,
+                          call.id(),
+                          call.lineNumber.getOrElse(-1),
+                          call.columnNumber.getOrElse(-1),
+                          call.label(),
+                          call.file.name.headOption.getOrElse(""),
+                          call.code,
+                        )
+                    }
+                    
+                    // Tìm trong call code (full expression)
+                    val callCodeMatches = cpg.call
+                      .filter(call => pattern.matches(call.code))
+                      .toSet
+                    for (call <- callCodeMatches) {
+                        sourceMethodGroup.appendNode(
+                          call.id(),
+                          call.lineNumber.getOrElse(-1),
+                          call.columnNumber.getOrElse(-1),
+                          call.label(),
+                          call.file.name.headOption.getOrElse(""),
+                          call.code,
+                        )
+                    }
+                    
+                    // Tìm trong literals (string constants)
+                    val literalMatches = cpg.literal
+                      .filter(lit => pattern.matches(lit.code))
+                      .toSet
+                    for (literal <- literalMatches) {
+                        sourceMethodGroup.appendNode(
+                          literal.id(),
+                          literal.lineNumber.getOrElse(-1),
+                          literal.columnNumber.getOrElse(-1),
+                          literal.label(),
+                          literal.file.name.headOption.getOrElse(""),
+                          literal.code,
+                        )
+                    }
+                    
+                    // Tìm trong identifiers
+                    val identifierMatches = cpg.identifier
+                      .filter(id => pattern.matches(id.code))
+                      .toSet
+                    for (identifier <- identifierMatches) {
+                        sourceMethodGroup.appendNode(
+                          identifier.id(),
+                          identifier.lineNumber.getOrElse(-1),
+                          identifier.columnNumber.getOrElse(-1),
+                          identifier.label(),
+                          identifier.file.name.headOption.getOrElse(""),
+                          identifier.code,
                         )
                     }
             }
@@ -291,7 +384,19 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             val nonMeaningfulLabels = Set("FILE", "NAMESPACE_BLOCK", "TYPE_DECL", "BINDING")
             if (nonMeaningfulLabels.contains(node.label)) return false
             
+            // Loại bỏ identifier đơn lẻ (chỉ là tên biến đơn thuần)
+            if (node.label == "IDENTIFIER" && isSingleIdentifier(code)) return false
+            
             true
+        }
+        
+        // Helper method để kiểm tra identifier đơn
+        def isSingleIdentifier(code: String): Boolean = {
+            // Identifier đơn: không chứa dấu ngoặc, operator, dấu chấm, v.v.
+            val meaningfulChars = Set('(', ')', '[', ']', '{', '}', '.', '=', '+', '-', '*', '/', '<', '>', '!', '&', '|', '?', ':', ';', ',', '"', '\'', '`', ' ')
+            
+            // Nếu code không chứa bất kỳ ký tự đặc biệt nào và ngắn
+            !code.exists(meaningfulChars.contains) && code.length < 50
         }
 
         while (!queue.isEmpty) {

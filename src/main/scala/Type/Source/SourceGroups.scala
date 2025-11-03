@@ -43,7 +43,25 @@ object SourceGroups {
     // Obfuscation detection - Variable property access
     CodeType("window"), // Global window object
     CodeType("global"), // Global object in Node.js
-    CodeType("globalThis") // Universal global object
+    CodeType("globalThis"), // Universal global object
+    
+    // Malicious string patterns - Commands and scripts
+    RegexType(".*cmd\\.exe.*"), // Command prompt execution
+    RegexType(".*powershell.*"), // PowerShell execution
+    RegexType(".*Invoke-Expression.*"), // PowerShell code execution
+    RegexType(".*DownloadFile.*"), // File download
+    RegexType(".*DownloadString.*"), // String download
+    RegexType(".*Webclient.*"), // Web client creation
+    RegexType(".*\\.exe.*"), // Executable files
+    RegexType(".*http[s]?://.*\\.php.*"), // Suspicious PHP URLs
+    RegexType(".*http[s]?://.*\\.dat.*"), // Suspicious DAT files
+    
+    // Suspicious variable names common in malware
+    CodeType("run"), // Often used for execution
+    CodeType("Run"), // Case variation
+    CodeType("exec"), // Execution
+    CodeType("Exec"), // Case variation
+    CodeType("shell") // Shell access
   )
 
   private val FILE_SYSTEM_SOURCES: Seq[TypeDefinition] = Seq(
