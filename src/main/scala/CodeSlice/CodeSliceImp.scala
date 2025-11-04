@@ -35,9 +35,6 @@ import scala.collection.mutable.ListBuffer
 // 30064771073 - 30064771076 - 30064771078
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
-    println(inputDir)
-    println(outputDir)
-
     private val cpg: Cpg = {
         println("ASTGEN_BIN = " + sys.env.get("ASTGEN_BIN"))
         val config = Config()
@@ -59,13 +56,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
     private val nodes = cpg.graph.allNodes.toSet
     private val files = cpg.file.toSet
     private val engineContext = new EngineContext()
-
-    // Print all edges for debugging
-//        edges.foreach(edge =>
-//            println(
-//                f"label=${edge.label}, src=${edge.src.id}, dst=${edge.dst.id}"
-//            )
-//        )
 
     // TODO: thang
     override def getSinkMethodGroup: SinkMethodGroup = {
@@ -297,10 +287,10 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                 if (sourceMethod != sinkMethod) {
                     val flows = reachableByFlow(sourceMethod, sinkMethod)
                     if (flows.size > 2) {
-                        // Không thêm sink node vào slice, chỉ thêm path từ source đến gần sink
-                        for (node <- flows if !sinkNodeIds.contains(node.nodeId)) {
+                        for (node <- flows) {
                             pathLine.addToSlice(node)
                         }
+                    } else {
                         pathLine.addPotentialPaths(sourceMethod, Set(sinkMethod))
                     }
                 }
@@ -392,10 +382,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
         
         // Helper method để kiểm tra identifier đơn
         def isSingleIdentifier(code: String): Boolean = {
-            // Identifier đơn: không chứa dấu ngoặc, operator, dấu chấm, v.v.
             val meaningfulChars = Set('(', ')', '[', ']', '{', '}', '.', '=', '+', '-', '*', '/', '<', '>', '!', '&', '|', '?', ':', ';', ',', '"', '\'', '`', ' ')
             
-            // Nếu code không chứa bất kỳ ký tự đặc biệt nào và ngắn
             !code.exists(meaningfulChars.contains) && code.length < 50
         }
 
@@ -405,8 +393,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             queue.dequeue()
             addToSlice(currentNode)
             
-            // Lấy tất cả edges đi vào node hiện tại
-            // Include: CFG (Control Flow), REACHING_DEF (Data Flow), AST edges, ARGUMENT edges
             val reachableEdges = edges.filter(edge => 
                 edge.dst.id == currentNode.nodeId && 
                 (edge.label == "CFG" || 
@@ -449,19 +435,49 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                 )
                             }
                         } else if (nodeLabel == "LITERAL") {
-                            // String literals - important for tracking obfuscated strings
-                            cpg.literal.id(edge.src.id).headOption.map { literalNode =>
-                                new CustomNode(
-                                    literalNode.id,
-                                    literalNode.lineNumber.getOrElse(-1),
-                                    literalNode.columnNumber.getOrElse(-1),
-                                    literalNode.label(),
-                                    literalNode.file.name.headOption.getOrElse(""),
-                                    literalNode.code
-                                )
+                            val identifierContainingLiteral = cpg.identifier
+                              .where(_.id(edge.src.id))
+                              .headOption
+
+                            val callContainingLiteral = cpg.call
+                              .where(_.id(edge.src.id))
+                              .headOption
+
+                            if (!identifierContainingLiteral.isEmpty) {
+                                identifierContainingLiteral.map { identifierNode =>
+                                    new CustomNode(
+                                        identifierNode.id,
+                                        identifierNode.lineNumber.getOrElse(-1),
+                                        identifierNode.columnNumber.getOrElse(-1),
+                                        identifierNode.label(),
+                                        identifierNode.file.name.headOption.getOrElse(""),
+                                        identifierNode.code
+                                    )
+                                }
+                            } else if (!callContainingLiteral.isEmpty) {
+                                callContainingLiteral.map { callNode =>
+                                    new CustomNode(
+                                        callNode.id,
+                                        callNode.lineNumber.getOrElse(-1),
+                                        callNode.columnNumber.getOrElse(-1),
+                                        callNode.label(),
+                                        callNode.file.name.headOption.getOrElse(""),
+                                        callNode.code
+                                    )
+                                }
+                            } else {
+                                cpg.literal.id(edge.src.id).headOption.map { literalNode =>
+                                    new CustomNode(
+                                        literalNode.id,
+                                        literalNode.lineNumber.getOrElse(-1),
+                                        literalNode.columnNumber.getOrElse(-1),
+                                        literalNode.label(),
+                                        literalNode.file.name.headOption.getOrElse(""),
+                                        literalNode.code
+                                    )
+                                }
                             }
                         } else if (nodeLabel == "METHOD" || nodeLabel == "METHOD_REF") {
-                            // Method definitions and references
                             cpg.method.id(edge.src.id).headOption.map { methodNode =>
                                 new CustomNode(
                                     methodNode.id,
@@ -473,7 +489,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                 )
                             }
                         } else if (nodeLabel == "BLOCK") {
-                            // Code blocks
                             cpg.block.id(edge.src.id).headOption.map { blockNode =>
                                 new CustomNode(
                                     blockNode.id,
@@ -485,7 +500,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                 )
                             }
                         } else if (nodeLabel == "LOCAL" || nodeLabel == "MEMBER") {
-                            // Local variables and object members
                             cpg.local.id(edge.src.id).headOption.map { localNode =>
                                 new CustomNode(
                                     localNode.id,
@@ -497,16 +511,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                 )
                             }
                         } else {
-                            Some(new CustomNode(
-                                edge.src.id,
-                                edge.src.propertyOption[Int]("LINE_NUMBER").getOrElse(-1),
-                                edge.src.propertyOption[Int]("COLUMN_NUMBER").getOrElse(-1),
-                                edge.src.label(),
-                                "",
-                                edge.src.propertyOption[String]("CODE")
-                                    .orElse(edge.src.propertyOption[String]("code"))
-                                    .getOrElse("")
-                            ))
+                            None
                         }
                     }
 
