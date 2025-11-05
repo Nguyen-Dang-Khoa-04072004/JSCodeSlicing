@@ -9,7 +9,8 @@ class CustomNode(
     val newNodeColumnNumber: Int,
     val newNodeLabel: String,
     val newNodeFileName: String,
-    val newNodeCode: String
+    val newNodeCode: String,
+    val methodFullNameParam: String = ""
 ) {
   val nodeId: Long = newNodeId
   val code: String = newNodeCode
@@ -17,11 +18,12 @@ class CustomNode(
   val columnNumber: Int = newNodeColumnNumber
   val label: String = newNodeLabel
   val fileName: String = newNodeFileName
+  val methodFullName: String = methodFullNameParam
 
 
   def dumpNodeInfo(): Unit = {
     println(
-      s"CustomNode - ID: $nodeId, Label: $label, Code: $code, Line: $lineNumber, Column: $columnNumber, File: $fileName"
+      s"CustomNode - ID: $nodeId, Label: $label, Code: $code, Line: $lineNumber, Column: $columnNumber, File: $fileName, MethodFullName: $methodFullName"
     )
   }
 

@@ -31,6 +31,7 @@ import io.joern.dataflowengineoss.slicing.{DataFlowConfig, DataFlowSlicing}
 import io.shiftleft.codepropertygraph.generated.nodes.{Call, Method, StoredNode}
 import io.shiftleft.semanticcpg.Overlays
 import scala.collection.mutable.ListBuffer
+import cask.endpoints.get
 
 // 30064771073 - 30064771076 - 30064771078
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
@@ -75,6 +76,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
+                          call.methodFullName
                         )
                     }
 
@@ -108,6 +110,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
+                          call.methodFullName
                         )
                     }
                     
@@ -123,36 +126,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
-                        )
-                    }
-                    
-                    // Tìm trong literals (string constants)
-                    val literalMatches = cpg.literal
-                      .filter(lit => pattern.matches(lit.code))
-                      .toSet
-                    for (literal <- literalMatches) {
-                        sinkMethodGroup.appendNode(
-                          literal.id(),
-                          literal.lineNumber.getOrElse(-1),
-                          literal.columnNumber.getOrElse(-1),
-                          literal.label(),
-                          literal.file.name.headOption.getOrElse(""),
-                          literal.code,
-                        )
-                    }
-                    
-                    // Tìm trong identifiers
-                    val identifierMatches = cpg.identifier
-                      .filter(id => pattern.matches(id.code))
-                      .toSet
-                    for (identifier <- identifierMatches) {
-                        sinkMethodGroup.appendNode(
-                          identifier.id(),
-                          identifier.lineNumber.getOrElse(-1),
-                          identifier.columnNumber.getOrElse(-1),
-                          identifier.label(),
-                          identifier.file.name.headOption.getOrElse(""),
-                          identifier.code,
                         )
                     }
             }
@@ -181,6 +154,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
+                          call.methodFullName
                         )
                     }
 
@@ -215,6 +189,7 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
+                          call.methodFullName
                         )
                     }
                     
@@ -230,36 +205,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                           call.label(),
                           call.file.name.headOption.getOrElse(""),
                           call.code,
-                        )
-                    }
-                    
-                    // Tìm trong literals (string constants)
-                    val literalMatches = cpg.literal
-                      .filter(lit => pattern.matches(lit.code))
-                      .toSet
-                    for (literal <- literalMatches) {
-                        sourceMethodGroup.appendNode(
-                          literal.id(),
-                          literal.lineNumber.getOrElse(-1),
-                          literal.columnNumber.getOrElse(-1),
-                          literal.label(),
-                          literal.file.name.headOption.getOrElse(""),
-                          literal.code,
-                        )
-                    }
-                    
-                    // Tìm trong identifiers
-                    val identifierMatches = cpg.identifier
-                      .filter(id => pattern.matches(id.code))
-                      .toSet
-                    for (identifier <- identifierMatches) {
-                        sourceMethodGroup.appendNode(
-                          identifier.id(),
-                          identifier.lineNumber.getOrElse(-1),
-                          identifier.columnNumber.getOrElse(-1),
-                          identifier.label(),
-                          identifier.file.name.headOption.getOrElse(""),
-                          identifier.code,
                         )
                     }
             }
@@ -434,60 +379,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                     identifierNode.code
                                 )
                             }
-                        } else if (nodeLabel == "LITERAL") {
-                            val identifierContainingLiteral = cpg.identifier
-                              .where(_.id(edge.src.id))
-                              .headOption
-
-                            val callContainingLiteral = cpg.call
-                              .where(_.id(edge.src.id))
-                              .headOption
-
-                            if (!identifierContainingLiteral.isEmpty) {
-                                identifierContainingLiteral.map { identifierNode =>
-                                    new CustomNode(
-                                        identifierNode.id,
-                                        identifierNode.lineNumber.getOrElse(-1),
-                                        identifierNode.columnNumber.getOrElse(-1),
-                                        identifierNode.label(),
-                                        identifierNode.file.name.headOption.getOrElse(""),
-                                        identifierNode.code
-                                    )
-                                }
-                            } else if (!callContainingLiteral.isEmpty) {
-                                callContainingLiteral.map { callNode =>
-                                    new CustomNode(
-                                        callNode.id,
-                                        callNode.lineNumber.getOrElse(-1),
-                                        callNode.columnNumber.getOrElse(-1),
-                                        callNode.label(),
-                                        callNode.file.name.headOption.getOrElse(""),
-                                        callNode.code
-                                    )
-                                }
-                            } else {
-                                cpg.literal.id(edge.src.id).headOption.map { literalNode =>
-                                    new CustomNode(
-                                        literalNode.id,
-                                        literalNode.lineNumber.getOrElse(-1),
-                                        literalNode.columnNumber.getOrElse(-1),
-                                        literalNode.label(),
-                                        literalNode.file.name.headOption.getOrElse(""),
-                                        literalNode.code
-                                    )
-                                }
-                            }
-                        } else if (nodeLabel == "METHOD" || nodeLabel == "METHOD_REF") {
-                            cpg.method.id(edge.src.id).headOption.map { methodNode =>
-                                new CustomNode(
-                                    methodNode.id,
-                                    methodNode.lineNumber.getOrElse(-1),
-                                    methodNode.columnNumber.getOrElse(-1),
-                                    methodNode.label(),
-                                    methodNode.file.name.headOption.getOrElse(""),
-                                    methodNode.code
-                                )
-                            }
                         } else if (nodeLabel == "BLOCK") {
                             cpg.block.id(edge.src.id).headOption.map { blockNode =>
                                 new CustomNode(
@@ -497,17 +388,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                     blockNode.label(),
                                     blockNode.file.name.headOption.getOrElse(""),
                                     blockNode.code
-                                )
-                            }
-                        } else if (nodeLabel == "LOCAL" || nodeLabel == "MEMBER") {
-                            cpg.local.id(edge.src.id).headOption.map { localNode =>
-                                new CustomNode(
-                                    localNode.id,
-                                    localNode.lineNumber.getOrElse(-1),
-                                    localNode.columnNumber.getOrElse(-1),
-                                    localNode.label(),
-                                    localNode.file.name.headOption.getOrElse(""),
-                                    localNode.code
                                 )
                             }
                         } else {
