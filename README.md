@@ -10,9 +10,18 @@ A Scala-based project for analyzing and slicing JavaScript code using AST genera
 
 ## Setup Instructions
 
+### 0. Download AST-GEN Base on your computer architecture
+
+1. Visit the [astgen releases page](https://github.com/joernio/astgen)
+2. Download the appropriate binary for your operating system:
+   - For Linux: `astgen-linux`
+   - For macOS: `astgen-macos`
+   - For Windows: `astgen-windows.exe`
+3. Place the downloaded binary in the `./astgen/` directory of this project.
+
 ### 1. Configure astgen Binary
 
-Before running the project, you need to set up the astgen binary:
+Before running the project, you need to set up the astgen binary. Example for Linux:
 
 ```bash
 # Make the astgen binary executable
@@ -21,8 +30,6 @@ chmod +x ./astgen/astgen-linux
 # Export the ASTGEN_BIN environment variable (on Linux/macOS)
 export ASTGEN_BIN=/mnt/d/HK251/Malware/datasets/code-slice-2/JSCodeSlicing/astgen/astgen-linux
 ```
-
-**Note for Windows users:** If you're on Windows with WSL, use the command above. For native Windows, you may need to adjust the path accordingly.
 
 ### 2. Project Dependencies
 
