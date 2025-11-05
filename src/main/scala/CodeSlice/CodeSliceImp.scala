@@ -13,7 +13,7 @@ import CodeSlice.Path.PathLine
 import io.shiftleft.semanticcpg.language.*
 import io.joern.dataflowengineoss.language.*
 
-import scala.collection.mutable.{Set, Queue}
+import scala.collection.mutable.{Set, Queue, Map}
 import java.nio.file.Paths
 import CodeSlice.Group.CustomNode
 
@@ -32,6 +32,8 @@ import io.shiftleft.codepropertygraph.generated.nodes.{Call, Method, StoredNode}
 import io.shiftleft.semanticcpg.Overlays
 import scala.collection.mutable.ListBuffer
 import cask.endpoints.get
+import scala.collection.mutable
+import flatgraph.GNode
 
 // 30064771073 - 30064771076 - 30064771078
 class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
@@ -53,8 +55,19 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
         }
     }
 
-    private val edges = cpg.graph.allEdges.toSet
-    private val nodes = cpg.graph.allNodes.toSet
+    private val edges: Map[Long, Set[Edge]] = {
+        val allEdges = cpg.graph.allEdges.toSet
+        val edgeMap: Map[Long, Set[Edge]] = Map()
+        for (edge <- allEdges) {
+            val dstId = edge.dst.id()
+            if (!edgeMap.contains(dstId)) {
+                edgeMap(dstId) = Set()
+            }
+            edgeMap(dstId).add(edge)
+        }
+        edgeMap
+    }
+
     private val files = cpg.file.toSet
     private val engineContext = new EngineContext()
 
@@ -80,21 +93,8 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                         )
                     }
 
-                case CodeType(value) =>
-                    val codes = cpg.identifier
-                      .where(_.name(value))
-                      .toSet
-                    for (code <- codes) {
-                        sinkMethodGroup.appendNode(
-                          code.id(),
-                          code.lineNumber.getOrElse(-1),
-                          code.columnNumber.getOrElse(-1),
-                          code.label(),
-                          code.file.name.headOption.getOrElse(""),
-                          code.code,
-                        )
-                    }
-
+                case CodeType(value) => None
+                    
                 case RegexType(value) =>
                     val pattern = value.r
                     
@@ -225,7 +225,6 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                               sinkMethodGroup: SinkMethodGroup
                             ): PathLine = {
         val pathLine = new PathLine()
-        val sinkNodeIds = sinkMethodGroup.getAllNodes.map(_.nodeId).toSet
         
         for (sourceMethod <- sourceMethodGroup.getAllNodes) {
             for (sinkMethod <- sinkMethodGroup.getAllNodes) {
@@ -338,19 +337,10 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
             queue.dequeue()
             addToSlice(currentNode)
             
-            val reachableEdges = edges.filter(edge => 
-                edge.dst.id == currentNode.nodeId && 
-                (edge.label == "CFG" || 
-                 edge.label == "REACHING_DEF" || 
-                 edge.label == "AST" || 
-                 edge.label == "ARGUMENT" ||
-                 edge.label == "RECEIVER" ||
-                 edge.label == "REF" ||
-                 edge.label == "CALL" ||
-                 edge.label == "EVAL_TYPE")
-            )
+            val reachableEdges = edges.getOrElse(currentNode.nodeId, Set())
 
             for (edge <- reachableEdges) {
+
                 if (edge.src.id == sourceId) {
                     reachable = true
                 } else {
