@@ -55,18 +55,12 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
         }
     }
 
-    private val edges: Map[Long, Set[Edge]] = {
-        val allEdges = cpg.graph.allEdges.toSet
-        val edgeMap: Map[Long, Set[Edge]] = Map()
-        for (edge <- allEdges) {
-            val dstId = edge.dst.id()
-            if (!edgeMap.contains(dstId)) {
-                edgeMap(dstId) = Set()
-            }
-            edgeMap(dstId).add(edge)
-        }
-        edgeMap
+    private val edges = cpg.graph.allEdges.map(edge => edge.dst.id() -> edge).groupBy(_._1).map {
+        case (dstId, edgeTuples) => dstId -> edgeTuples.map(_._2).toSet
     }
+    private val allCalls = cpg.call.map(call => call.id() -> call).toMap
+    private val allIdentifiers = cpg.identifier.map(id => id.id() -> id).toMap
+    private val allBlocks = cpg.block.map(block => block.id() -> block).toMap
 
     private val files = cpg.file.toSet
     private val engineContext = new EngineContext()
@@ -348,20 +342,20 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
 
                     val customNodeOpt: Option[CustomNode] = {
                         if (nodeLabel == "CALL") {
-                            cpg.call.id(edge.src.id).headOption.map { callNode =>
+                            allCalls.get(edge.src.id).map( callNode => 
                                 new CustomNode(
-                                    callNode.id,
+                                    callNode.id(),
                                     callNode.lineNumber.getOrElse(-1),
                                     callNode.columnNumber.getOrElse(-1),
                                     callNode.label(),
                                     callNode.file.name.headOption.getOrElse(""),
                                     callNode.code
                                 )
-                            }
+                            )
                         } else if (nodeLabel == "IDENTIFIER") {
-                            cpg.identifier.id(edge.src.id).headOption.map { identifierNode =>
+                            allIdentifiers.get(edge.src.id).map { identifierNode =>
                                 new CustomNode(
-                                    identifierNode.id,
+                                    identifierNode.id(),
                                     identifierNode.lineNumber.getOrElse(-1),
                                     identifierNode.columnNumber.getOrElse(-1),
                                     identifierNode.label(),
@@ -370,9 +364,9 @@ class CodeSliceImp(inputDir: String, outputDir: String) extends CodeSlice {
                                 )
                             }
                         } else if (nodeLabel == "BLOCK") {
-                            cpg.block.id(edge.src.id).headOption.map { blockNode =>
+                            allBlocks.get(edge.src.id).map { blockNode =>
                                 new CustomNode(
-                                    blockNode.id,
+                                    blockNode.id(),
                                     blockNode.lineNumber.getOrElse(-1),
                                     blockNode.columnNumber.getOrElse(-1),
                                     blockNode.label(),

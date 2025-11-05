@@ -1,0 +1,608 @@
+// File: 1.js
+// ======================================================================
+window.location.href='http://book.dangdang.com/book_dacu_guan?wide_type=1'
+
+// File: 10.js
+// ======================================================================
+funcload()
+
+// File: 100.js
+// ======================================================================
+parseInt(c/a)
+c.toString(36)
+c+29
+String.fromCharCode(c+29)
+_tmp_1.push(<lambda>2)
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('r(1c 1H=="O"){o U;(p(){o k={1d:"1I.1J",1e:\'1K\',D:\'O\',1f:\'O\'};k.1g={1h:0,1L:"",F:8,1i:p(a){o b=l.1h?"1M":"1N";o c="";P(o i=0;i<a.B*4;i++){c+=b.1j((a[i>>2]>>((i%4)*8+4))&1k)+b.1j((a[i>>2]>>((i%4)*8))&1k)}u c},1l:p(x,e){x[e>>5]|=1O<<((e)%32);x[(((e+1P)>>>9)<<4)+14]=e;o a=1Q;o b=-1R;o c=-1S;o d=1T;P(o i=0;i<x.B;i+=16){o f=a;o g=b;o h=c;o j=d;a=l.v(a,b,c,d,x[i+0],7,-1U);d=l.v(d,a,b,c,x[i+1],12,-1V);c=l.v(c,d,a,b,x[i+2],17,1W);b=l.v(b,c,d,a,x[i+3],22,-1X);a=l.v(a,b,c,d,x[i+4],7,-1Y);d=l.v(d,a,b,c,x[i+5],12,1Z);c=l.v(c,d,a,b,x[i+6],17,-24);b=l.v(b,c,d,a,x[i+7],22,-25);a=l.v(a,b,c,d,x[i+8],7,26);d=l.v(d,a,b,c,x[i+9],12,-27);c=l.v(c,d,a,b,x[i+10],17,-28);b=l.v(b,c,d...
+
+// File: 102.js
+// ======================================================================
+funcload()
+
+// File: 103.js
+// ======================================================================
+clearTimeout(setTo)
+{
+        setTo = setTimeout(function(){
+          document.getElementById("hot_search_content").style.display="none";
+        },100)                        
+    }
+setTo = setTimeout(function(){
+          document.getElementById("hot_search_content").style.display="none";
+        },100)
+$("#li_label_16").addClass("on")
+$("#li_label_16").mouseout(function(){
+	$("#li_label_16").removeClass("on");
+})
+
+// File: 11.js
+// ======================================================================
+$('.storey_three').hide()
+$('.storey_five').hide()
+$('.storey_three .book_1ad').hide()
+$('.storey_five .book_1ad').hide()
+$('.storey_three .book_3ad').hide()
+$('.storey_five .book_3ad').hide()
+
+// File: 12.js
+// ======================================================================
+$('.pic_top_long').attr('dd_name','图首小巨幕')
+
+// File: 13.js
+// ======================================================================
+$('.book_vip .list_aa li .price').parent().addClass('small_img')
+
+// File: 15.js
+// ======================================================================
+$('.book_reco_area').attr('style','padding-top: 20px; border-top: 1px solid #eaeaea; ')
+{
+			var pro_obj = $(".book_reco_pro .list_aa").find("li");
+			var pro_count = pro_obj.length;
+			//初始化 显示
+			if(pro_count<=0){
+					return ;
+			}
+			//可更换的次数
+			var pages = parseInt(pro_count/10); 
+                        
+			if(pages>1){
+				if(click_count<=(pages-1)){
+					show_product(click_count,pro_obj);
+					click_count++;	
+				}else{
+					show_product(0,pro_obj);
+					click_count=1				
+				}
+                               
+			}
+	}
+$(".book_reco_pro .list_aa").find("li")
+var pro_obj = $(".book_reco_pro .list_aa").find("li")
+parseInt(pro_count/10)
+
+// File: 17.js
+// ======================================================================
+$('.level_one').each(function(){
+if($(this).height() > $(this).find('.submenu').height() + 23){
+$(this).find('.submenu').height($(this).height());
+}
+})
+{
+$(this).find('.submenu').height($(this).height());
+}
+$(this).find('.submenu')
+$(this).find('.submenu').height($(this).height())
+$(this).find('.submenu')
+$('.sidemenu').find('div[father=1]')
+$('.sidemenu').find('div[father=1]').each(function(){
+                            var son_len=$(this).find('dl[son=1] dt:empty').length;
+                            var  sec_cate=$(this).find('.sec_cate:empty').length;
+                            if(sec_cate>0){$(this).find('.sec_cate').remove();}
+                            if(son_len>0){
+                                $(this).remove();
+                            }else{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+                        })
+{
+                            var son_len=$(this).find('dl[son=1] dt:empty').length;
+                            var  sec_cate=$(this).find('.sec_cate:empty').length;
+                            if(sec_cate>0){$(this).find('.sec_cate').remove();}
+                            if(son_len>0){
+                                $(this).remove();
+                            }else{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+                        }
+$(this).find('dl[son=1] dt:empty')
+var son_len=$(this).find('dl[son=1] dt:empty').length
+$(this).find('.sec_cate:empty')
+var sec_cate=$(this).find('.sec_cate:empty').length
+$(this).find('.sec_cate')
+{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+$(this).find('dl[son=1]').find('dt')
+$(this).find('dl[son=1]').find('dt').wrapInner("<span></span>")
+$(this).find('dl[son=1]')
+$(this).find('dl[son=1]').find('dd').addClass('dd_level1')
+$(this).find('dl[son=1]')
+$(this).find('dl[son=1]').find('dd')
+$('.sidemenu').find('div[father=1]')
+$('.sidemenu').find('div[father=1]')
+$('.sidemenu').find('div[father=1]').eq(fath_len).addClass('last')
+$('.eject_left').find('dd>a')
+$('.eject_left').find('dd>a').each(function(){
+                            $(this).html("<span>"+$(this).html()+"</span>")
+                        })
+$(this).html("<span>"+$(this).html()+"</span>")
+$(this).html()
+{
+                            var dl_len=$(this).find('dl').length-1;
+                            $(this).find('dl').eq(dl_len).addClass('last');
+                        }
+$('.eject_left').each(function(){
+                            var dl_len=$(this).find('dl').length-1;
+                            $(this).find('dl').eq(dl_len).addClass('last');
+                        })
+$(this).find('dl')
+var dl_len=$(this).find('dl').length-1
+$(this).find('dl')
+$(this).find('dl').eq(dl_len).addClass('last')
+$('.level_one').each(function(e){
+                                var submenu = $(this).find('.submenu');
+                                var dl_length=submenu.find('dl').length;
+                                submenu.hide();
+                                 if(dl_length<1){
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+                                $(this).hover(function(){
+                                    if(dl_length>0){
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                               ...
+{
+                                var submenu = $(this).find('.submenu');
+                                var dl_length=submenu.find('dl').length;
+                                submenu.hide();
+                                 if(dl_length<1){
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+                                $(this).hover(function(){
+                                    if(dl_length>0){
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                                            thisOH = parseFloat...
+$(this).find('.submenu')
+var submenu = $(this).find('.submenu')
+submenu.find('dl')
+var dl_length=submenu.find('dl').length
+submenu.hide()
+{
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+$(this).find('.primary_dl dt span')
+$(this).find('.primary_dl dt span').css('background-image','none')
+{
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                                            thisOH = parseFloat(thisO.outerHeight(), 10),
+                                            thisBodyOffsetT = parseFloat(thisBody.offset().top, 10),
+                                            thisSubH = parseFloat(thisSub.outerHeight(), 10)
+
+                                        var winH = parseFloat($(window).height()),
+                                            winScrollTop = parseFloat($(window).scrollTop(), 10);
+
+                                        if(thisOOffsetT < winScrollTop){
+                 ...
+$(this).addClass('on')
+$(this).find('.submenu').show()
+$(this).find('.submenu')
+var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+thisO.find('.submenu')
+$(this).find('.submenu').hide()
+$(this).find('.submenu')
+$('.submenu').each(function(){
+                                var slen=$(this).find("dl").length;
+                                if(slen<1){$(this).remove;}
+                            })
+{
+                                var slen=$(this).find("dl").length;
+                                if(slen<1){$(this).remove;}
+                            }
+$(this).find("dl")
+var slen=$(this).find("dl").length
+$('.hotsell').find('.content')
+$('.level_one').each(function(){
+                               $(this).find('.primary_dl dd a').last().addClass('last_a');
+                            })
+$(this).find('.primary_dl dd a').last()
+$(this).find('.primary_dl dd a').last().addClass('last_a')
+$(this).find('.primary_dl dd a')
+
+// File: 18.js
+// ======================================================================
+$(this).parent('li').find(".name a").attr("style","text-decoration: underline;color: #ec7814")
+$(this).parent('li').find(".name a")
+$('.img').live('mouseenter',function(){ $(this).parent('li').find(".name a").attr("style","text-decoration: underline;color: #ec7814");})
+$(this).parent('li').find(".name a").attr("style"," ")
+$(this).parent('li').find(".name a")
+$('.img').live('mouseleave',function(){  $(this).parent('li').find(".name a").attr("style"," ");})
+
+// File: 19.js
+// ======================================================================
+{
+            var pro_li = $(".book_presell .list_aa").find("li");
+        
+
+ if(!pro_li||pro_li.length<2){
+ $(".book_presell .btn_brand_prev").hide();
+$(".book_presell .btn_brand_next").hide();
+}
+
+$('.book_presell .mix_marquee_tab').css({"left":(238-(pro_li.length*20-10))/2+"px"});
+        }
+$(".book_presell .list_aa").find("li")
+var pro_li = $(".book_presell .list_aa").find("li")
+$(".book_presell .btn_brand_prev").hide()
+$(".book_presell .btn_brand_next").hide()
+
+// File: 20.js
+// ======================================================================
+$('#minaAttract').hide()
+
+// File: 23.js
+// ======================================================================
+window.location.href='http://book.dangdang.com/exam?wide_type=1'
+
+// File: 28.js
+// ======================================================================
+CC.bookHome()
+
+// File: 29.js
+// ======================================================================
+{
+    var _analysis = document.createElement('script'); 
+    _analysis.type = 'text/javascript'; 
+    _analysis.async = true;
+    _analysis.src = ('https:' == document.location.protocol ? '' : 'http://rum.xdy-cdn.cn/probe/download/_xdy_cdn_rum.js');
+    // _analysis.src = ('https:' == document.location.protocol ? '' : 'http://rum.xdy-cdn.cn/probe/download/_xdy_cdn_rum_debug.js'); 
+    var script = document.getElementsByTagName('script')[0]; script.parentNode.insertBefore(_analysis, script);
+}
+'https:' == document.location.protocol ? "" : "http://rum.xdy-cdn.cn/probe/download/_xdy_cdn_rum.js"
+_analysis.src = ('https:' == document.location.protocol ? '' : 'http://rum.xdy-cdn.cn/probe/download/_xdy_cdn_rum.js')
+script.parentNode.insertBefore(_analysis, script)
+document.getElementsByTagName('script')
+var script = document.getElementsByTagName('script')[0]
+
+// File: 32.js
+// ======================================================================
+$('.sidemenu .flq_body .submenu .eject_left dl.inner_dl dd').each(function(){
+$(this).find('a').last().css('background','none');
+})
+$(this).find('a')
+$(this).find('a').last()
+$('.level_one').each(function(){
+if($(this).height() > $(this).find('.submenu').height() + 23){
+$(this).find('.submenu').height($(this).height());
+}
+})
+{
+$(this).find('.submenu').height($(this).height());
+}
+$(this).find('.submenu')
+$(this).find('.submenu').height($(this).height())
+$(this).find('.submenu')
+{
+                            var son_len=$(this).find('dl[son=1] dt:empty').length;
+                            var  sec_cate=$(this).find('.sec_cate:empty').length;
+                            if(sec_cate>0){$(this).find('.sec_cate').remove();}
+                            if(son_len>0){
+                                $(this).remove();
+                            }else{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+                        }
+$('.sidemenu').find('div[father=1]')
+$('.sidemenu').find('div[father=1]').each(function(){
+                            var son_len=$(this).find('dl[son=1] dt:empty').length;
+                            var  sec_cate=$(this).find('.sec_cate:empty').length;
+                            if(sec_cate>0){$(this).find('.sec_cate').remove();}
+                            if(son_len>0){
+                                $(this).remove();
+                            }else{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+                        })
+$(this).find('dl[son=1] dt:empty')
+var son_len=$(this).find('dl[son=1] dt:empty').length
+var sec_cate=$(this).find('.sec_cate:empty').length
+$(this).find('.sec_cate:empty')
+$(this).find('.sec_cate')
+{
+                                $(this).find('dl[son=1]').find('dt').wrapInner("<span></span>");
+                                $(this).find('dl[son=1]').find('dd').addClass('dd_level1');
+                            }
+$(this).find('dl[son=1]')
+$(this).find('dl[son=1]').find('dt')
+$(this).find('dl[son=1]').find('dt').wrapInner("<span></span>")
+$(this).find('dl[son=1]').find('dd')
+$(this).find('dl[son=1]').find('dd').addClass('dd_level1')
+$(this).find('dl[son=1]')
+$('.sidemenu').find('div[father=1]')
+$('.sidemenu').find('div[father=1]').eq(fath_len).addClass('last')
+$('.sidemenu').find('div[father=1]')
+$('.eject_left').find('dd>a')
+$('.eject_left').find('dd>a').each(function(){
+                            $(this).html("<span>"+$(this).html()+"</span>")
+                        })
+$(this).html("<span>"+$(this).html()+"</span>")
+$(this).html()
+$('.eject_left').each(function(){
+                            var dl_len=$(this).find('dl').length-1;
+                            $(this).find('dl').eq(dl_len).addClass('last');
+                        })
+{
+                            var dl_len=$(this).find('dl').length-1;
+                            $(this).find('dl').eq(dl_len).addClass('last');
+                        }
+var dl_len=$(this).find('dl').length-1
+$(this).find('dl')
+$(this).find('dl').eq(dl_len).addClass('last')
+$(this).find('dl')
+{
+                                var submenu = $(this).find('.submenu');
+                                var dl_length=submenu.find('dl').length;
+                                submenu.hide();
+                                 if(dl_length<1){
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+                                $(this).hover(function(){
+                                    if(dl_length>0){
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                                            thisOH = parseFloat...
+$('.level_one').each(function(e){
+                                var submenu = $(this).find('.submenu');
+                                var dl_length=submenu.find('dl').length;
+                                submenu.hide();
+                                 if(dl_length<1){
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+                                $(this).hover(function(){
+                                    if(dl_length>0){
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                               ...
+$(this).find('.submenu')
+var submenu = $(this).find('.submenu')
+var dl_length=submenu.find('dl').length
+submenu.find('dl')
+submenu.hide()
+{
+                                    $(this).find('.primary_dl dt span').css('background-image','none');
+                                  }
+$(this).find('.primary_dl dt span').css('background-image','none')
+$(this).find('.primary_dl dt span')
+{
+                                       $(this).addClass('on');
+                                        $(this).find('.submenu').show();
+                                        var thisTop = -1;
+                                        var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+                                        var thisOOffsetT = parseFloat(thisO.offset().top, 10),
+                                            thisOH = parseFloat(thisO.outerHeight(), 10),
+                                            thisBodyOffsetT = parseFloat(thisBody.offset().top, 10),
+                                            thisSubH = parseFloat(thisSub.outerHeight(), 10)
+
+                                        var winH = parseFloat($(window).height()),
+                                            winScrollTop = parseFloat($(window).scrollTop(), 10);
+
+                                        if(thisOOffsetT < winScrollTop){
+                 ...
+$(this).addClass('on')
+$(this).find('.submenu').show()
+$(this).find('.submenu')
+var thisO = $(this), thisSub = thisO.find('.submenu'),thisBody = $('.flq_body');
+thisO.find('.submenu')
+$(this).find('.submenu')
+$(this).find('.submenu').hide()
+{
+                                var slen=$(this).find("dl").length;
+                                if(slen<1){$(this).remove;}
+                            }
+$('.submenu').each(function(){
+                                var slen=$(this).find("dl").length;
+                                if(slen<1){$(this).remove;}
+                            })
+$(this).find("dl")
+var slen=$(this).find("dl").length
+$('.hotsell').find('.content')
+$('.level_one').each(function(){
+                               $(this).find('.primary_dl dd a').last().addClass('last_a');
+                            })
+$(this).find('.primary_dl dd a').last()
+$(this).find('.primary_dl dd a').last().addClass('last_a')
+$(this).find('.primary_dl dd a')
+
+// File: 37.js
+// ======================================================================
+window.location.href='http://book.dangdang.com/20200604_115h?wide_type=1'
+
+// File: 42.js
+// ======================================================================
+$(".slide_ban").show(300)
+$(".slide_ban").hide(300)
+
+// File: 48.js
+// ======================================================================
+window.location.href='http://book.dangdang.com/20180412_skfq?wide_type=1'
+
+// File: 5.js
+// ======================================================================
+$('#QRCode_mina').click(function(){window.open('http://coupon.dangdang.com/coupon_list?cid=0','_blank')})
+window.open('http://coupon.dangdang.com/coupon_list?cid=0','_blank')
+
+// File: 63.js
+// ======================================================================
+funcload()
+
+// File: 72.js
+// ======================================================================
+$(".silide_ban").show(300)
+$(".silide_ban").hide(300)
+
+// File: 80.js
+// ======================================================================
+window.location.href='http://book.dangdang.com/20131105_feiv?wide_type=1'
+
+// File: 84.js
+// ======================================================================
+$("#model_268900_0_0 .mainProduct_list li").jTab({   
+            'onClass'          : 'currentShow',
+            'contentElements'  : $("#model_268900_0_0 .mainProductShow"),
+            'scroll'           : 'right',
+            'tagOrder'         : true,
+            'timeout'          : 2000
+        })
+{
+        var pubCycleCountsDownTime = [];
+        var pubCycleFourModel = {};
+        pubCycleFourModel.countDown = {
+            action:function(s){
+                if(s > 0){
+                    t=s;
+                    arr=[];
+                    arr["d"]=t/(60*60*24)<1?0:(t-t%(60*60*24))/(60*60*24);
+                    t-=arr["d"]*60*60*24;
+                    arr["h"]=t/(60*60)<1?0:(t-t%(60*60))/(60*60);
+                    t-=arr["h"]*60*60;
+                    arr["m"]=t/60<1?0:(t-t%(60))/(60);
+                    t-=arr["m"]*60;
+                    arr["s"] = t;   
+                    return arr;
+                }
+            },
+            show:function(index,el){
+                var arr = this.action(el);
+                if(pubCycleCountsDownTime[index]<=0){
+                    delete pubCycleCountsDownTime[index];
+                    $("#pubCycleFour_time_"+index).html("");
+                 
+                    var len = function(arr){
+                        j=0;
+      ...
+var pubCycleCountsDownTime = []
+{
+                    t=s;
+                    arr=[];
+                    arr["d"]=t/(60*60*24)<1?0:(t-t%(60*60*24))/(60*60*24);
+                    t-=arr["d"]*60*60*24;
+                    arr["h"]=t/(60*60)<1?0:(t-t%(60*60))/(60*60);
+                    t-=arr["h"]*60*60;
+                    arr["m"]=t/60<1?0:(t-t%(60))/(60);
+                    t-=arr["m"]*60;
+                    arr["s"] = t;   
+                    return arr;
+                }
+arr=[]
+arr["d"]=t/(60*60*24)<1?0:(t-t%(60*60*24))/(60*60*24)
+t-=arr["d"]*60*60*24
+arr["h"]=t/(60*60)<1?0:(t-t%(60*60))/(60*60)
+t-=arr["h"]*60*60
+t/60
+arr["m"]=t/60<1?0:(t-t%(60))/(60)
+t-=arr["m"]*60
+arr["s"] = t
+{
+                var arr = this.action(el);
+                if(pubCycleCountsDownTime[index]<=0){
+                    delete pubCycleCountsDownTime[index];
+                    $("#pubCycleFour_time_"+index).html("");
+                 
+                    var len = function(arr){
+                        j=0;
+                        for(var i in arr){
+                            j++;
+                        }
+                        return j;
+                    }
+                
+                    if(len(pubCycleCountsDownTime) <= 0){
+                        clearInterval(pubCycleFourModel.auto);
+                    }
+                    return false;
+                }
+                pubCycleCountsDownTime[index] -= 60;      
+                $("#pubCycleFour_time_"+index).html("还剩<strong>"+this._format(arr['d'])+"</strong>天<strong>"+this._format(arr["h"])+"</strong>时<strong>"+this._format(arr["m"])+"</strong>分钟结束");
+            }
+{
+                    delete pubCycleCountsDownTime[index];
+                    $("#pubCycleFour_time_"+index).html("");
+                 
+                    var len = function(arr){
+                        j=0;
+                        for(var i in arr){
+                            j++;
+                        }
+                        return j;
+                    }
+                
+                    if(len(pubCycleCountsDownTime) <= 0){
+                        clearInterval(pubCycleFourModel.auto);
+                    }
+                    return false;
+                }
+delete pubCycleCountsDownTime[index]
+$("#pubCycleFour_time_"+index).html("")
+_iterator_0.next()
+pubCycleCountsDownTime[index] -= 60
+$("#pubCycleFour_time_"+index).html("还剩<strong>"+this._format(arr['d'])+"</strong>天<strong>"+this._format(arr["h"])+"</strong>时<strong>"+this._format(arr["m"])+"</strong>分钟结束")
+for(index in pubCycleCountsDownTime){
+                    this.show(index,pubCycleCountsDownTime[index]);
+                }
+_iterator_1.next()
+this.show(index,pubCycleCountsDownTime[index])
+{
+                    var key = $(el).attr("pid");
+                    var mid = $(el).attr("mid");
+                    if(key == '' || mid == ""){
+                        return false;
+                    }
+                    pubCycleCountsDownTime[key+"_"+mid] = $(el).attr("value");
+                }
+$(".pubCycleFour_time").each(function(i,el){
+                    var key = $(el).attr("pid");
+                    var mid = $(el).attr("mid");
+                    if(key == '' || mid == ""){
+                        return false;
+                    }
+                    pubCycleCountsDownTime[key+"_"+mid] = $(el).attr("value");
+                })
+$(el).attr("pid")
+$(el).attr("mid")
+pubCycleCountsDownTime[key+"_"+mid] = $(el).attr("value")
+$(el).attr("value")
+this.interval()
+pubCycleFourModel.countDown.init()
+pubCycleFourModel.countDown.interval()
+pubCycleFourModel.auto = setInterval(function(){ pubCycleFourModel.countDown.interval()},60000)
