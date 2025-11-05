@@ -11,7 +11,20 @@ class PathLine {
   val potentialPaths: Map[CustomNode, Set[CustomNode]] = Map()
   
   def addToSlice(node: CustomNode): Unit = {
-    flows.add(node)
+    val existingNodeOpt = flows.find(n =>
+      n.fileName == node.fileName && 
+      n.lineNumber == node.lineNumber
+    )
+    
+    existingNodeOpt match {
+      case Some(existingNode) =>
+        if (node.code.length > existingNode.code.length) {
+          flows.remove(existingNode)
+          flows.add(node)
+        }
+      case None =>
+        flows.add(node)
+    }
   }
 
   def addPotentialPaths(source: CustomNode, sinks: Set[CustomNode]): Unit = {

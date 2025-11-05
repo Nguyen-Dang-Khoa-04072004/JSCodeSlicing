@@ -1,1 +1,0 @@
-var width = 1; narrow = 0;
